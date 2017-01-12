@@ -15,7 +15,14 @@
 get_header(); ?>
 	<div class="container">
 	<div class="row">
-	<div class="col-sm-8">
+	<div class="col-sm-3">
+	<?php
+
+		get_sidebar();
+
+	?>
+	</div>
+	<div class="col-sm-6">
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
 
@@ -53,14 +60,14 @@ get_header(); ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 	</div>
-<div class="col-sm-4">
+	<div class="col-sm-3">
 
-<?php
+		<?php
 
-get_sidebar();
+			get_sidebar('right');
 
-?>
-</div>
+		?>
+	</div>
 </div>
 </div>
 <?php

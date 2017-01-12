@@ -45,6 +45,7 @@ function poc_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
 		'primary' => esc_html__( 'Primary', 'poc' ),
+		'top' => esc_html__( 'Top', 'poc' ),
 	) );
 
 	/*
@@ -59,11 +60,7 @@ function poc_setup() {
 		'caption',
 	) );
 
-	// Set up the WordPress core custom background feature.
-	/*add_theme_support( 'custom-background', apply_filters( 'poc_custom_background_args', array(
-		'default-color' => 'ffffff',
-		'default-image' => '',
-	) ) );*/
+
 }
 endif;
 add_action( 'after_setup_theme', 'poc_setup' );
@@ -148,6 +145,8 @@ add_action( 'widgets_init', 'poc_widgets_init' );
  */
 function poc_scripts() {
 	wp_enqueue_style( 'poc-bootstrap', get_template_directory_uri() .'/assets/bootstrap/css/bootstrap.min.css',array(),'3.3.7' );
+
+	wp_enqueue_style( 'poc-font-awesome', get_template_directory_uri() .'/assets/font-awesome/css/font-awesome.min.css',array(),'4.1.0' );
 
 	wp_enqueue_style( 'poc-bootstrap-theme', get_template_directory_uri() .'/assets/bootstrap/css/bootstrap-theme.min.css',array(),'3.3.7' );
 
