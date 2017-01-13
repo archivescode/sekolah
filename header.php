@@ -9,12 +9,26 @@
  * @package poc
  */
 
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="profile" href="http://gmpg.org/xfn/11">
+<?php 
+if ( function_exists('fw_get_db_settings_option') && !empty(fw_get_db_settings_option('favicon')) ) {
+
+	$favicon = fw_get_db_settings_option('favicon');
+
+	echo '<link rel="icon" type="image/x-icon" href="'.$favicon['url'].'" />';
+
+}else{ 
+
+echo '<link rel="icon" type="image/x-icon" href="' . get_stylesheet_directory_uri() . '/images/favicon.png" />';
+
+ } 
+ ?>
 
 <?php wp_head(); ?>
 </head>

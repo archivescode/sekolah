@@ -33,6 +33,20 @@ $options = array(
 						'desc'	=> __('Controls the overall site width. In px or %, ex: 100% or 1170px.', 'poc'),
 						'help'	=> __('Controls the overall site width. In px or %, ex: 100% or 1170px.', 'poc'),
 					),
+					'sidebar' => array(
+						'label'   => __( 'Sidebar Position', 'poc' ),
+						'type'    => 'select',
+						'show_borders' => false,
+						'value'		=> __('right', 'poc'),
+						'choices' => array(
+							'right' 		=> __( 'Right', 'poc' ),
+							'left' 			=> __( 'Left', 'poc' ),
+							'left_right' 	=> __( 'Left Right', 'poc' ),
+							'full' 			=> __( 'No Sidebar', 'poc' ),
+						),
+						'desc'    => __( 'Select sidebar layout.', 'poc' ),
+						'help'    => __( 'Select sidebar layout.', 'poc' ),
+					),
 				)
 			),
 		)
