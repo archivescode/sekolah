@@ -2,6 +2,31 @@
 	<?php 
 		if ( function_exists('fw_get_db_settings_option') ) {
 
+			//site width
+			$site_width = fw_get_db_settings_option('site_width');
+
+			if(empty($site_width)){
+				echo ".container{width:1170px;}";
+			}else{
+				echo ".container{width:". $site_width .";}";
+			}
+
+			//site layout
+			$site_layout = fw_get_db_settings_option('layout');
+			if($site_layout == "boxed"){
+				echo "#page{-webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.5);-moz-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.5);box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.5);width:".$site_width.";margin:0 auto;}";
+			}
+
+			$show_header_top = fw_get_db_settings_option('show_header_top');
+			if ($show_header_top == 'no') {
+				echo '.header-top-wrap{display:none;}';
+			}
+			$header_top_border_color = fw_get_db_settings_option('header_top_border_top_color');
+
+			if(!empty($header_top_border_color)){
+				echo 'header .header-top-wrap{border-top-color: '.$header_top_border_color.'}';
+			}
+
 			//sidebar style
 			$sidebar = fw_get_db_settings_option('sidebar');
 

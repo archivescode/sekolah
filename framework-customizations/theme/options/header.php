@@ -121,21 +121,6 @@ $options = array(
 				'title'   => __( 'Header Settings', 'poc' ),
 				'type'    => 'box',
 				'options' => array(
-					'full_width_header_main' => array(
-						'label'        => __( 'Full Width Header', 'poc' ),
-						'type'         => 'switch',
-						'right-choice' => array(
-							'value' => 'yes',
-							'label' => __( 'Yes', 'poc' )
-						),
-						'left-choice'  => array(
-							'value' => 'no',
-							'label' => __( 'No', 'poc' )
-						),
-						'value'        => 'no',
-						'desc'         => __( 'Full Width Header', 'poc' ),
-						'help'         => __( 'Full Width Header', 'poc' ),
-					),
 					'logo' => array(
 						'label' => __( 'Logo', 'poc' ),
 						'desc'  => __( 'Upload a logo image', 'poc' ),
