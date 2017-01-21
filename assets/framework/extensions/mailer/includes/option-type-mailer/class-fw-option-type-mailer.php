@@ -7,7 +7,9 @@ class FW_Option_Type_Mailer extends FW_Option_Type {
 	/**
 	 * @internal
 	 */
-	public function _init() {}
+	public function _init() {
+		add_action('wp_ajax_fw_ext_mailer_test_connection', array($this, '_action_ajax_test_connection'));
+	}
 
 	public function get_type() {
 		return 'mailer';
@@ -100,7 +102,31 @@ class FW_Option_Type_Mailer extends FW_Option_Type {
 						'value' => '',
 					)
 				),
-			)
+			),
+			'test-connection' => array(
+				'label'         => false,
+				'desc'          => false,
+				'type'          => 'multi',
+				'inner-options' => array(
+					'test-connection' => array(
+						'type' => 'html-fixed',
+						'attr' => array(
+							'class' => 'test-connection-wrapper'
+						),
+						'html' =>
+							'<div class="test-connection">'.
+							/**/'<div>'.
+							/**//**/'<div>'.
+							/**//**//**/'<input type="email" placeholder="'. esc_attr__('Test email destination', 'fw') .'" style="width:100%;">'.
+							/**//**/'</div>'.
+							/**//**/'<div>'.
+							/**//**//**/'<button class="button" type="button">'. esc_html__('Send a test email', 'fw') .'</button>'.
+							/**//**/'</div>'.
+							/**/'</div>'.
+							'</div>'
+					),
+				),
+			),
 		);
 	}
 
@@ -153,6 +179,36 @@ class FW_Option_Type_Mailer extends FW_Option_Type {
 		return (is_array( $input_value ) && ! empty( $input_value ))
 			? fw_get_options_values_from_input($this->get_inner_options(), $input_value)
 			: $option['value'];
+	}
+
+	/**
+	 * @internal
+	 */
+	public function _action_ajax_test_connection() {
+		if (!current_user_can('edit_posts')) {
+			return wp_send_json_error(new WP_Error('forbidden', __('Forbidden', 'fw')));
+		} elseif (!is_email($to = FW_Request::POST('to'))) {
+			return wp_send_json_error(new WP_Error('forbidden', __('Invalid email', 'fw')));
+		} elseif (!is_array($settings = FW_Request::POST('settings'))) {
+			return wp_send_json_error(new WP_Error('forbidden', __('Invalid settings', 'fw')));
+		}
+
+		/** @var FW_Extension_Mailer $ext */
+		$ext = fw_ext('mailer');
+
+		$result = $ext->send(
+			$to,
+			__('Test Subject', 'fw'),
+			'<strong>'. __('Test Message', 'fw') .'</strong>',
+			array(),
+			fw_get_options_values_from_input($this->get_inner_options(), $settings)
+		);
+
+		if ($result['status']) {
+			wp_send_json_success();
+		} else {
+			wp_send_json_error(new WP_Error('fail', $result['message']));
+		}
 	}
 }
 

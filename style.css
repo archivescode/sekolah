@@ -376,11 +376,8 @@ hr {
 
 ul,
 ol {
-	margin: 0 0 1.5em 3em;
-}
-
-ul {
-	list-style: disc;
+	padding: 0;
+	list-style: none;
 }
 
 ol {
@@ -507,6 +504,16 @@ textarea {
 /*--------------------------------------------------------------
 # Navigation
 --------------------------------------------------------------*/
+.navbar.navbar-default{
+	border: none;
+	box-shadow: none;
+	-webkit-box-shadow:none;
+	border-radius: 0;
+	background: inherit;
+}
+.navbar-collapse{
+	border:none;
+}
 /*--------------------------------------------------------------
 ## Links
 --------------------------------------------------------------*/
@@ -904,6 +911,60 @@ header .header-top-wrap{
 	border-top : 5px solid #ffffff;
 	padding: 10px 0px;
 }
+
+/*==================================================================================
+	mega manu
+====================================================================================*/
+
+.menu-item-has-children {
+  position: static !important;
+}
+.sub-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  font-size: 14px;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+          background-clip: padding-box;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, .15);
+  border-radius: 4px;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+          box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+.sub-menu > li > ul {
+  padding: 0;
+  margin: 1px;
+}
+.sub-menu > li > ul > li {
+  list-style: none;
+}
+.sub-menu > li > ul > li > a {
+  display: block;
+  color: #222;
+  padding: 3px 5px;
+}
+.sub-menu > li ul > li > a:hover,
+.sub-menu > li ul > li > a:focus {
+  text-decoration: none;
+}
+.sub-menu .dropdown-header {
+  font-size: 18px;
+  color: #ff3546;
+  padding: 5px 60px 5px 5px;
+  line-height: 30px;
+}
+
+
 /*==================================================================================
 	Pagination
 ====================================================================================*/

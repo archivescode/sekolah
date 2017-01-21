@@ -107,4 +107,81 @@ function poc_posts_nav() {
 
 }
 
+add_action('admin_head', 'poc_show_favicon');
+add_action('wp_head', 'poc_show_favicon');
+function poc_show_favicon() {
+	if ( function_exists('fw_get_db_settings_option') && !empty(fw_get_db_settings_option('favicon')) ) {
 
+		$favicon = fw_get_db_settings_option('favicon');
+
+		echo '<link rel="icon" type="image/x-icon" href="'.$favicon['url'].'" />';
+
+	}else{ 
+
+	echo '<link rel="icon" type="image/x-icon" href="' . get_stylesheet_directory_uri() . '/images/favicon.png" />';
+
+	 } 
+}
+
+//print google font link
+
+if(!function_exists('_action_theme_process_google_fonts')) {
+    function _action_theme_process_google_fonts()
+    {
+        $include_from_google = array();
+        $google_fonts = fw_get_google_fonts();
+
+        $general_typography = fw_get_db_settings_option('general_typography');
+        //$link_typography = fw_get_db_settings_option('link_typography');
+
+        // if is google font
+        if( isset($google_fonts[$general_typography['family']]) ){
+            $include_from_google[$general_typography['family']] =   $google_fonts[$general_typography['family']];
+        }
+
+        if( isset($google_fonts[$general_typography['family']]) ){
+            $include_from_google[$link_typography['family']] =   $google_fonts[$link_typography['family']];
+        }
+
+        $google_fonts_links = fw_theme_get_remote_fonts($include_from_google);
+        // set a option in db for save google fonts link
+        update_option( 'fw_theme_google_fonts_link', $google_fonts_links );
+    }
+    add_action('fw_settings_form_saved', '_action_theme_process_google_fonts', 999, 2);
+}
+
+if (!function_exists('fw_theme_get_remote_fonts')) :
+    function fw_theme_get_remote_fonts($include_from_google) {
+        /**
+         * Get remote fonts
+         * @param array $include_from_google
+         */
+        if ( ! sizeof( $include_from_google ) ) {
+            return '';
+        }
+        print_r($include_from_google);
+        $html = "<link href='http://fonts.googleapis.com/css?family=";
+
+        foreach ( $include_from_google as $font => $styles ) {
+            $html .= str_replace( ' ', '+', $font ) . ':' . implode( ',', $styles['variants'] ) . '|';
+        }
+
+        $html = substr( $html, 0, - 1 );
+        $html .= "' rel='stylesheet' type='text/css'>";
+
+        return $html;
+    }
+endif;
+
+if (!function_exists('_action_theme_print_google_fonts_link')) :
+    function _action_theme_print_google_fonts_link() {
+        /**
+         * Print google fonts link
+         */
+        $google_fonts_link = get_option('fw_theme_google_fonts_link', '');
+        if($google_fonts_link != ''){
+            echo $google_fonts_link;
+        }
+    }
+    add_action('wp_head', '_action_theme_print_google_fonts_link');
+endif;

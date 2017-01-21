@@ -150,9 +150,13 @@ function poc_scripts() {
 
 	wp_enqueue_style( 'poc-bootstrap-theme', get_template_directory_uri() .'/assets/bootstrap/css/bootstrap-theme.min.css',array(),'3.3.7' );
 
+	wp_enqueue_style( 'poc-google-font', esc_url( $google_font_url ) , false, null ,'all' );
+
 	wp_enqueue_style( 'poc-style', get_stylesheet_uri() );
 
 	wp_enqueue_script( 'poc-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+
+	wp_enqueue_script( 'poc-bootstrap-js', get_template_directory_uri() . '/assets/bootstrap/js/bootstrap.min.js', array(), '20151215', true );
 
 	wp_enqueue_script( 'poc-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
@@ -183,3 +187,4 @@ require get_template_directory() . '/inc/jetpack.php';
 *Load unyson plugin
 */
 require get_template_directory() .'/assets/framework/bootstrap.php';
+

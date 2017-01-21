@@ -20,13 +20,14 @@ $options = array(
 							'value' => 'no',
 							'label' => __( 'No', 'poc' )
 						),
-						'value'        => 'no',
+						'value'        => 'yes',
 						'desc'         => __( 'Display Footer', 'poc' ),
 						'help'         => __( 'Display Footer', 'poc' ),
 					),
 					'footer_column' => array(
 					    'label'   => __('Footer Column', 'poc'),
 					    'desc'    => __('Footer Column', 'poc'),
+					    'value'		=> '3',
 					    'type'    => 'select',
 					    'choices' => array(
 					        '1'	=> '1',

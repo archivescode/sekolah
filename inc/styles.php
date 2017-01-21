@@ -4,13 +4,14 @@
 			/*===========================================================================
 				General Style
 			===========================================================================*/
+
 			//site width
 			$site_width = fw_get_db_settings_option('site_width');
 
 			if(empty($site_width)){
-				echo ".container{width:1170px;}";
+				echo ".container{max-width:1170px;}";
 			}else{
-				echo ".container{width:". $site_width .";}";
+				echo ".container{max-width:". $site_width .";}";
 			}
 
 			//site layout
@@ -25,18 +26,25 @@
 			$general_typography = fw_get_db_settings_option('general_typography');
 			//fw_print($general_typography);
 			if(!empty($general_typography)){
+
 				$font_replace = $general_typography['style'];
 				$findme   = '0i';
 				$pos = strpos($font_replace, $findme);
 
+				echo $pos;
+
 				if ($pos === false) {
-				    $font_style = $font_replace;
+					if($font_replace == 'regular'){
+						$font_style = 'normal';
+					}else{
+				    	$font_style = $font_replace;
+					}
 				} else {
 				    $font_style = str_replace('italic',' italic', $font_replace);
 				}
 				
-				$font = $font_style .' '.$general_typography['size'] .'px '. $general_typography['family'];
-				echo 'html, html body{font:'. $font .';color: '.$general_typography['color'].';}';
+				$font = 'font-weight: '. $font_style .'; font-size:  '.$general_typography['size'] .'px; font-family:  '. $general_typography['family'];
+				echo 'html, html body{'. $font .';color: '.$general_typography['color'].';}';
 			}
 			/*=========================================================================
 				Header Top Style

@@ -1,4 +1,4 @@
-(function (fwe, _, itemData) {
+(function (fwe) {
 	fwe.on('fw-builder:' + 'page-builder' + ':register-items', function (builder) {
 		var PageBuilderContactFormItem,
 			PageBuilderContactFormItemView,
@@ -120,11 +120,29 @@
 			},
 			editOptions: function (e) {
 				e.stopPropagation();
+
 				if (!this.modal) {
 					return;
 				}
-				this.modal.open();
-				return false;
+
+				var flow = {cancelModalOpening: false};
+
+				/**
+				 * Trigger before-open model just like we do this for
+				 * item-simple shortcodes.
+				 *
+				 * http://bit.ly/1KY6tpP
+				 */
+				fwEvents.trigger('fw:page-builder:shortcode:contact-form:modal:before-open', {
+					modal: this.modal,
+					model: this.model,
+					builder: builder,
+					flow: flow
+				});
+
+				if (! flow.cancelModalOpening) {
+					this.modal.open();
+				}
 			},
 			configureMailer: function (e) {
 				this.editOptions(e);
@@ -144,6 +162,9 @@
 				delete attributes['_items'];
 
 				clonedContactForm = new PageBuilderContactFormItem(attributes);
+
+				triggerEvent(clonedContactForm, 'clone-item:before');
+
 				this.model.collection.add(clonedContactForm, {at: index + 1});
 				clonedContactForm.get('_items').reset(_items);
 				return false;
@@ -159,23 +180,23 @@
 			defaults: {
 				type: 'contact-form'
 			},
-			restrictedTypes: itemData.restrictedTypes,
+			restrictedTypes: itemData().restrictedTypes,
 			initialize: function (atts, opts) {
 
 				this.view = new PageBuilderContactFormItemView({
 					id: 'page-builder-item-' + this.cid,
 					model: this,
-					modalOptions: itemData.options,
-					modalSize: itemData.popup_size,
+					modalOptions: itemData().options,
+					modalSize: itemData().popup_size,
 					templateData: {
-						title: itemData.title,
-						image: itemData.image,
-						isMailer : itemData.mailer,
-						configureMailer : itemData.configureMailer,
-						edit : itemData.edit,
-						duplicate : itemData.duplicate,
-						remove : itemData.remove,
-						hasOptions: !!itemData.options
+						title: itemData().title,
+						image: itemData().image,
+						isMailer : itemData().mailer,
+						configureMailer : itemData().configureMailer,
+						edit : itemData().edit,
+						duplicate : itemData().duplicate,
+						remove : itemData().remove,
+						hasOptions: !!itemData().options
 					}
 				});
 
@@ -188,4 +209,12 @@
 
 		builder.registerItemClass(PageBuilderContactFormItem);
 	});
-})(fwEvents, _, page_builder_item_type_contact_form_data);
+
+	function itemData () {
+		// return fw.unysonShortcodesData()['contact_form'];
+		// return page_builder_item_type_contact_form_data;
+		return fw_form_builder_item_type_contact_form_data[
+			'contact_form'
+		];
+	}
+})(fwEvents);

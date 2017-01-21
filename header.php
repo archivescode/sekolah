@@ -16,19 +16,8 @@
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="profile" href="http://gmpg.org/xfn/11">
-<?php 
-if ( function_exists('fw_get_db_settings_option') && !empty(fw_get_db_settings_option('favicon')) ) {
-
-	$favicon = fw_get_db_settings_option('favicon');
-
-	echo '<link rel="icon" type="image/x-icon" href="'.$favicon['url'].'" />';
-
-}else{ 
-
-echo '<link rel="icon" type="image/x-icon" href="' . get_stylesheet_directory_uri() . '/images/favicon.png" />';
-
- } 
- ?>
+<!--link google font-->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i|PT+Sans:400,400i,700,700i" rel="stylesheet"> 
 
 <?php wp_head(); ?>
 </head>
@@ -36,7 +25,7 @@ echo '<link rel="icon" type="image/x-icon" href="' . get_stylesheet_directory_ur
 <body <?php body_class(); ?>>
 <?php get_template_part( 'inc/styles' ); ?>
 <div id="page" class="site">
-
+<?php fw_print(fw_get_db_settings_option('general_typography'));?>
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'poc' ); ?></a>
 
 	<header id="masthead" class="site-header" role="banner">

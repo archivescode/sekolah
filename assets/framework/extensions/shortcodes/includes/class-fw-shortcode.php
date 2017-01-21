@@ -64,14 +64,13 @@ class FW_Shortcode
 	 */
 	final public function locate_path($rel_path = '')
 	{
-		$paths = array_merge($this->rewrite_paths, array($this->path));
-
-		foreach ($paths as $path) {
+		foreach (array_merge($this->rewrite_paths, array($this->path)) as $path) {
 			$actual_path = $path . $rel_path;
 			if (file_exists($actual_path)) {
 				return $actual_path;
 			}
 		}
+
 		return false;
 	}
 
@@ -94,14 +93,15 @@ class FW_Shortcode
 	 */
 	final public function locate_URI($rel_path = '')
 	{
-		$paths = array_merge($this->rewrite_paths, array($this->path));
-		$uris  = array_merge($this->rewrite_uris, array($this->uri));
-		foreach ($paths as $key => $path) {
+		$paths = array_merge( $this->rewrite_paths, array( $this->path ) );
+		$uris  = array_merge( $this->rewrite_uris, array( $this->uri ) );
+		foreach ( $paths as $key => $path ) {
 			$actual_path = $path . $rel_path;
-			if (file_exists($actual_path)) {
-				return $uris[$key] . $rel_path;
+			if ( file_exists( $actual_path ) ) {
+				return $uris[ $key ] . $rel_path;
 			}
 		}
+
 		return false;
 	}
 

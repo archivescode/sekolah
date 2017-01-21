@@ -146,8 +146,13 @@ class FW_Ext_Mailer_Send_Method_SMTP extends FW_Ext_Mailer_Send_Method {
 		$mailer->Password   = $config['password'];
 		$mailer->CharSet    = 'utf-8';
 
-		$mailer->From       = $email->get_from();
-		$mailer->FromName   = $email->get_from_name();
+		if (trim($email->get_from())) {
+			$mailer->From = $email->get_from();
+
+			if (trim($email->get_from_name())) {
+				$mailer->FromName = $email->get_from_name();
+			}
+		}
 
 		if (is_array($email->get_to())) {
 			foreach ($email->get_to() as $to_address) {
@@ -172,19 +177,23 @@ class FW_Ext_Mailer_Send_Method_SMTP extends FW_Ext_Mailer_Send_Method {
 
 		//$mailer->SMTPDebug = true;
 
-		$result = $mailer->send();
-
-		$mailer->ClearAddresses();
-		$mailer->ClearAllRecipients();
-
-		unset($mailer);
-
-		return $result
-			? true
-			: new WP_Error(
+		try {
+			return $mailer->send()
+				? true
+				: new WP_Error(
+					'failed',
+					__('Could not send the email', 'fw')
+				);
+		} catch (phpmailerException $e) {
+			return new WP_Error(
 				'failed',
-				__('Could not send the email', 'fw')
+				$e->errorMessage()
 			);
+		} catch (Exception $e) {
+			return new WP_Error(
+				'failed',
+				$e->getMessage()
+			);
+		}
 	}
-
 }

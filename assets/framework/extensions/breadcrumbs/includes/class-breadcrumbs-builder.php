@@ -96,7 +96,7 @@ class Breadcrumbs_Builder {
 		$return = array(
 			0 => array(
 				'name' => $this->settings['labels']['homepage-title'],
-				'url'  => home_url(),
+				'url'  => esc_url( home_url('/') ),
 				'type' => 'front_page'
 			),
 		);
@@ -129,21 +129,11 @@ class Breadcrumbs_Builder {
 		} elseif ( is_front_page() ) {
 		} elseif ( is_home() ) {
 
-			$blog = array();
-
-			$page_for_posts = get_option( 'page_for_posts' );
-			if ( get_option( 'show_on_front' ) == 'page' && ! empty( $page_for_posts ) ) {
-				$post = get_post( $page_for_posts );
-				$blog['name'] = $post->the_title;
-				$blog['url'] = get_permalink($post->ID);
-				$blog['type'] = 'posts_page';
-			} else {
-				$blog = array(
-					'name' => $this->settings['labels']['blogpage-title'],
-					'url'  => fw_current_url(),
-					'type' => 'front_page'
-				);
-			}
+			$blog = array(
+				'name' => $this->settings['labels']['blogpage-title'],
+				'url'  => fw_current_url(),
+				'type' => 'front_page'
+			);
 
 			$return[] = $blog;
 		} elseif ( is_page() ) {
@@ -164,11 +154,10 @@ class Breadcrumbs_Builder {
 				$terms = wp_get_post_terms( $post->ID, $slugs );
 
 				if ( ! empty( $terms ) ) {
-					$term = array_shift( $terms );
-					unset( $terms );
-
+					$lowest_term = $this->get_lowest_taxonomy_terms($terms);
+					$term = $lowest_term[0];
 					$return = array_merge( $return,
-						array_reverse( $this->get_term_hierarchy( $term->term_id, $term->taxonomy ) )
+						array_reverse( $this->get_term_hierarchy( $term->term_id, $term->taxonomy ))
 					);
 				}
 			}
@@ -275,6 +264,42 @@ class Breadcrumbs_Builder {
 		$return = apply_filters( 'fw_ext_breadcrumbs_build', $return );
 
 		return $return;
+	}
+
+	/**
+	 * Returns the lowest hierarchical term
+	 * @return array
+	 */
+	private function get_lowest_taxonomy_terms( $terms ) {
+		// if terms is not array or its empty don't proceed
+		if ( ! is_array( $terms ) || empty( $terms ) ) {
+			return false;
+		}
+
+		return $this->filter_terms($terms);
+	}
+
+	private function filter_terms($terms) {
+		$return_terms = array();
+		$term_ids = array();
+
+		foreach ($terms as $t) {
+			$term_ids[] = $t->term_id;
+		}
+
+		foreach ( $terms as $t ) {
+			if ( $t->parent == false || !in_array($t->parent,$term_ids) )  {
+				// remove this term
+			} else {
+				$return_terms[] = $t;
+			}
+		}
+
+		if ( count($return_terms) ) {
+			return $this->filter_terms($return_terms);
+		} else {
+			return $terms;
+		}
 	}
 
 	/**

@@ -22,6 +22,43 @@ class FW_Option_Type_Form_Builder extends FW_Option_Type_Builder {
 		require $dir . '/items/form-builder-items.php';
 
 		do_action( 'fw_option_type_form_builder_init' );
+
+		if( is_admin() && defined('DOING_AJAX') ) {
+			add_filter( 'fw_ext:shortcodes:collect_shortcodes_data', array(
+				$this, '_filter_add_form_builder_items_data'
+			) );
+		}
+	}
+
+	/**
+	 * @since 1.0.2
+	 */
+	public function _filter_add_form_builder_items_data( $structure ) {
+		if ( ! isset( $structure['contact_form_items'] ) ) {
+			$structure['contact_form_items'] = array();
+		}
+
+		$structure['contact_form_items'] = $this->_collect_item_types_data();
+
+		return $structure;
+	}
+
+	protected function _collect_item_types_data() {
+		$data = array();
+
+		$item_types = $this->get_item_types();
+
+		foreach ( $item_types as $name => $class ) {
+			if (!method_exists($class, 'get_item_localization')) {
+				// fixes https://wordpress.org/support/topic/fatal-error-2392/
+				// todo: maybe add a default get_item_localization() method?
+				continue;
+			}
+
+			$data[ $name ] = $class->get_item_localization();
+		}
+
+		return $data;
 	}
 
 	/**
@@ -42,15 +79,35 @@ class FW_Option_Type_Form_Builder extends FW_Option_Type_Builder {
 
 		wp_enqueue_style(
 			'fw-builder-' . $this->get_type(),
-			fw_get_framework_directory_uri( '/extensions/forms/includes/option-types/' . $this->get_type() . '/static/css/styles.css' ),
+			fw_get_framework_directory_uri(
+				'/extensions/forms/includes/option-types/' .
+				$this->get_type() .
+				'/static/css/styles.css'
+			),
 			array( 'fw' )
 		);
+
 		wp_enqueue_script(
 			'fw-builder-' . $this->get_type(),
-			fw_get_framework_directory_uri( '/extensions/forms/includes/option-types/' . $this->get_type() . '/static/js/helpers.js' ),
+			fw_get_framework_directory_uri(
+				'/extensions/forms/includes/option-types/' .
+				$this->get_type() .
+				'/static/js/helpers.js'
+			),
 			array( 'fw' ),
-			false,
-			true
+			false, true
+		);
+
+		wp_localize_script(
+			'fw-builder-' . $this->get_type(),
+			'fw_' . str_replace( '-', '_', $this->get_type() ) . '_item_type_contact_form_data',
+			array(
+				'contact_form' => fw_ext('shortcodes')->get_shortcode(
+					'contact_form'
+				)->get_item_data(),
+
+				'contact_form_items' => $this->_collect_item_types_data()
+			)
 		);
 	}
 

@@ -61,8 +61,8 @@ class FW_Ext_Mega_Menu_Admin_Walker extends Walker_Nav_Menu /* Walker_Nav_Menu_E
 					<span class="item-title"><span class="menu-item-title"><?php echo esc_html( $title ); ?></span> <span class="is-submenu" <?php echo $submenu_text; ?>><?php _e( 'sub item', 'fw' ); ?></span></span>
 					<span class="item-controls">
 <?php # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ?>
-						<span class="item-type show-if-mega-menu-top"><?php echo __('Mega Menu', 'fw') ?></span>
-						<span class="item-type show-if-mega-menu-column"><?php echo __('Column', 'fw') ?></span>
+						<span class="item-type show-if-mega-menu-top"><?php esc_html_e('Mega Menu', 'fw') ?></span>
+						<span class="item-type show-if-mega-menu-column"><?php esc_html_e('Column', 'fw') ?></span>
 						<span class="item-type hide-if-mega-menu-top hide-if-mega-menu-column"><?php echo esc_html($item->type_label) ?></span>
 <?php # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ?>
 						<span class="item-order hide-if-js">
@@ -203,7 +203,8 @@ class FW_Ext_Mega_Menu_Admin_Walker extends Walker_Nav_Menu /* Walker_Nav_Menu_E
 <?php # Use as Mega Menu ?>
 				<p class="description description-wide show-if-menu-top">
 					<label>
-						<input type="checkbox" name="<?php echo _fw_ext_mega_menu_admin_input_name($item, 'enabled') ?>" <?php checked(fw_ext_mega_menu_get_meta($item, 'enabled')) ?> class="mega-menu-enabled" />
+						<input type="checkbox" name="<?php echo _fw_ext_mega_menu_admin_input_name($item, 'enabled') ?>"
+							<?php checked(fw_ext_mega_menu_get_meta($item, 'enabled')) ?> class="mega-menu-enabled" />
 						<?php _e('Use as Mega Menu', 'fw') ?>
 					</label>
 				</p>

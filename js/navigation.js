@@ -110,3 +110,15 @@
 		}
 	}( container ) );
 } )();
+(function($) {
+    $(".menu-item-has-children").hover(            
+        function() {
+            $('.sub-menu', this).not('.in .sub-menu').stop(true,true).slideDown("400");
+            $(this).toggleClass('open');        
+        },
+        function() {
+            $('.sub-menu', this).not('.in .sub-menu').stop(true,true).slideUp("400");
+            $(this).toggleClass('open');       
+        }
+    );
+})(jQuery);

@@ -22,7 +22,23 @@ $options = array(
 					        'size'   => true,
 					        'color'  => true
 					    ),
-					    'attr'  => array( 'class' => 'custom-class', 'data-foo' => 'bar' ),
+					    'label' => __('Label', 'poc'),
+					    'desc'  => __('Description', 'poc'),
+					    'help'  => __('Help tip', 'poc'),
+					),
+					'link_typography' => array(
+					    'type'  => 'typography',
+					    'value' => array(
+					        'family' => 'Pt Sans',
+					        'size'   => 14,
+					        'style'  => 'regular',
+					        'color'  => '#000000'
+					    ),
+					   'components' => array(
+					        'family' => true,
+					        'size'   => true,
+					        'color'  => true
+					    ),
 					    'label' => __('Label', 'poc'),
 					    'desc'  => __('Description', 'poc'),
 					    'help'  => __('Help tip', 'poc'),

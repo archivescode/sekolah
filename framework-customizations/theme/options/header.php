@@ -127,6 +127,13 @@ $options = array(
 						'type'  => 'upload'
 					),
 					'logo_height' => array(
+						'label' => __( 'Logo width', 'poc' ),
+						'type'  => 'text',
+						'value' => '300px',
+						'desc'  => __( 'Logo width ex:200px', 'poc' ),
+						'help'  => __( 'Logo width ex:200px', 'poc' ),
+					),
+					'logo_height' => array(
 						'label' => __( 'Logo Height', 'poc' ),
 						'type'  => 'text',
 						'value' => '',

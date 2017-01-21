@@ -1,4 +1,4 @@
-(function(fwe, _, itemData) {
+(function(fwe) {
 	fwe.on('fw-builder:' + 'page-builder' + ':register-items', function(builder) {
 		var PageBuilderColumnItem,
 			PageBuilderColumnItemView,
@@ -17,10 +17,7 @@
 					builder: builder
 				};
 
-				fwEvents.trigger(event, eventData
-					? _.extend(eventData, data)
-					: data
-				);
+				fwEvents.trigger(event, eventData ? _.extend(eventData, data) : data);
 			},
 			getEventName = function(itemModel, event) {
 				return 'fw:builder-type:{builder-type}:item-type:{item-type}:'
@@ -30,7 +27,7 @@
 			};
 
 		PageBuilderColumnItemViewWidthChanger = FwBuilderComponents.ItemView.WidthChanger.extend({
-			widths: itemData.item_widths
+			widths: itemData().item_widths
 		});
 
 		PageBuilderColumnItemView = builder.classes.ItemView.extend({
@@ -54,11 +51,11 @@
 					triggerEvent(this.model, 'options-modal:settings', eventData);
 
 					this.modal = new fw.OptionsModal({
-						title: itemData.l10n.title,
+						title: itemData().l10n.title,
 						options: options.modalOptions,
 						values: this.model.get('atts'),
 						size: options.modalSize,
-						headerElements: itemData.header_elements
+						headerElements: itemData().header_elements
 					}, eventData.modalSettings);
 
 					this.listenTo(this.modal, 'change:values', function (modal, values) {
@@ -99,23 +96,24 @@
 			},
 			template: _.template(
 				'<div class="pb-item-type-column pb-item <% if (hasOptions) { print(' + '"has-options"' + ')} %>">' +
-					'<div class="panel fw-row">' +
-						'<div class="panel-left fw-col-xs-6">' +
-							'<div class="width-changer"></div>' +
-						'</div>' +
-						'<div class="panel-right fw-col-xs-6">' +
-							'<div class="controls">' +
+				/**/'<div class="panel fw-row">' +
+				/**//**/'<div class="panel-left fw-col-xs-6">' +
+				/**//**//**/'<div class="width-changer"></div>' +
+				/**//**/'</div>' +
+				/**//**/'<div class="panel-right fw-col-xs-6">' +
+				/**//**//**/'<div class="controls">' +
 
-								'<% if (hasOptions) { %>' +
-								'<i class="dashicons dashicons-admin-generic edit-options" data-hover-tip="<%- edit %>"></i>' +
-								'<% } %>' +
+				/**//**//**//**/'<% if (hasOptions) { %>' +
+				/**//**//**//**/'<i class="dashicons dashicons-admin-generic edit-options" data-hover-tip="<%- edit %>"></i>' +
+				/**//**//**//**/'<% } %>' +
 
-								'<i class="dashicons dashicons-admin-page column-item-clone" data-hover-tip="<%- duplicate %>"></i>' +
-								'<i class="dashicons dashicons-no column-item-delete" data-hover-tip="<%- remove %>"></i>' +
-							'</div>' +
-						'</div>' +
-					'</div>' +
-					'<div class="builder-items"></div>' +
+				/**//**//**//**/'<i class="dashicons dashicons-admin-page column-item-clone" data-hover-tip="<%- duplicate %>"></i>' +
+				/**//**//**//**/'<i class="dashicons dashicons-no column-item-delete" data-hover-tip="<%- remove %>"></i>' +
+				/**//**//**//**/'<i class="dashicons dashicons-arrow-down column-item-collapse" data-hover-tip="<%- collapse %>"></i>' +
+				/**//**//**/'</div>' +
+				/**//**/'</div>' +
+				/**/'</div>' +
+				/**/'<div class="builder-items"></div>' +
 				'</div>'
 			),
 			render: function() {
@@ -123,6 +121,8 @@
 
 				this.$('.width-changer').append(this.widthChangerView.$el);
 				this.widthChangerView.delegateEvents();
+
+				this.$el[this.model.get('fw-collapse') ? 'addClass' : 'removeClass']('pb-item-column-collapsed');
 
 				/**
 				 * Other scripts can append/prepend other control $elements
@@ -137,7 +137,8 @@
 				'click': 'editOptions',
 				'click .edit-options': 'editOptions',
 				'click .column-item-clone': 'cloneItem',
-				'click .column-item-delete': 'removeItem'
+				'click .column-item-delete': 'removeItem',
+				'click .column-item-collapse': 'collapseItem'
 			},
 			editOptions: function (e) {
 				e.stopPropagation();
@@ -176,6 +177,9 @@
 				delete attributes['_items'];
 
 				clonedColumn = new PageBuilderColumnItem(attributes);
+
+				triggerEvent(clonedColumn, 'clone-item:before');
+
 				this.model.collection.add(clonedColumn, {at: index + 1});
 				clonedColumn.get('_items').reset(_items);
 			},
@@ -184,6 +188,10 @@
 
 				this.remove();
 				this.model.collection.remove(this.model);
+			},
+			collapseItem: function(e) {
+				e.stopPropagation();
+				this.model.set('fw-collapse', !this.model.get('fw-collapse'));
 			}
 		});
 
@@ -191,7 +199,7 @@
 			defaults: {
 				type: 'column'
 			},
-			restrictedTypes: itemData.restrictedTypes,
+			restrictedTypes: itemData().restrictedTypes,
 			initialize: function(atts, opts) {
 				if (
 					!this.get('width')
@@ -204,13 +212,14 @@
 				this.view = new PageBuilderColumnItemView({
 					id: 'page-builder-item-'+ this.cid,
 					model: this,
-					modalOptions: itemData.options,
-					modalSize: itemData.popup_size,
+					modalOptions: itemData().options,
+					modalSize: itemData().popup_size,
 					templateData: {
-						hasOptions: !!itemData.options,
-                        edit : itemData.l10n.edit,
-                        duplicate : itemData.l10n.duplicate,
-                        remove : itemData.l10n.remove
+						hasOptions: !! itemData().options,
+						edit : itemData().l10n.edit,
+						duplicate : itemData().l10n.duplicate,
+						remove : itemData().l10n.remove,
+						collapse: itemData().l10n.collapse,
 					}
 				});
 
@@ -232,4 +241,9 @@
 
 		builder.registerItemClass(PageBuilderColumnItem);
 	});
-})(fwEvents, _, page_builder_item_type_column_data);
+
+	function itemData () {
+		// return fw.unysonShortcodesData()['column'];
+		return page_builder_item_type_column_data;
+	}
+})(fwEvents);
