@@ -38,6 +38,7 @@
 				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'poc' ),
 				'after'  => '</div>',
 			) );
+
 		?>
 	</div><!-- .entry-content -->
 

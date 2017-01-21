@@ -66,7 +66,7 @@ get_header(); ?>
 
 			endwhile;
 
-			the_posts_navigation();
+			poc_posts_nav();
 
 		else :
 
@@ -76,8 +76,8 @@ get_header(); ?>
 
 		</main><!-- #main -->
 
-	</div>
-	
+	</div><!--col_content-->
+
 	</div><!-- #primary -->
 
 	<div class="sidebar-right">
