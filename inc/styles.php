@@ -18,10 +18,29 @@
 			if($site_layout == "boxed"){
 				echo "#page{-webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.5);-moz-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.5);box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.5);width:".$site_width.";margin:0 auto;}";
 			}
+			/*=========================================================================
+				Typography
+				standart font css (font: font-style font-variant font-weight font-size/line-height font-family)
+			==========================================================================*/
+			$general_typography = fw_get_db_settings_option('general_typography');
+			//fw_print($general_typography);
+			if(!empty($general_typography)){
+				$font_replace = $general_typography['style'];
+				$findme   = '0i';
+				$pos = strpos($font_replace, $findme);
 
+				if ($pos === false) {
+				    $font_style = $font_replace;
+				} else {
+				    $font_style = str_replace('italic',' italic', $font_replace);
+				}
+				
+				$font = $font_style .' '.$general_typography['size'] .'px '. $general_typography['family'];
+				echo 'html, html body{font:'. $font .';color: '.$general_typography['color'].';}';
+			}
 			/*=========================================================================
 				Header Top Style
-			===========================================================================*/
+			==========================================================================*/
 			$show_header_top = fw_get_db_settings_option('show_header_top');
 			if ($show_header_top == 'no') {
 				echo '.header-top-wrap{display:none;}';

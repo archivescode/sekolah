@@ -7,9 +7,35 @@
  * @package poc
  */
 
+if ( function_exists('fw_get_db_settings_option') && !empty(fw_get_db_settings_option('sidebar')) ) {
+	$sidebar = fw_get_db_settings_option('sidebar');
+	$column_content = 'col-sm-12';
+	$column_sidebar = 'col-sm-3';
+	if($sidebar == 'left' || $sidebar == 'right'){
+		$column_sidebar = 'col-sm-3';
+		$column_content = 'col-sm-8';
+	}elseif ($sidebar == 'left_right') {
+		$column_sidebar = 'col-sm-3';
+		$column_content = 'col-sm-6';
+	}
+}
 get_header(); ?>
+	<div class="container">
+	<div class="row">
+
+	<div class="sidebar-left">
+	<div class="<?php echo $column_sidebar; ?>">
+	<?php
+
+		get_sidebar();
+
+	?>
+	</div>
+	</div><!--sidebar-left-->
 
 	<section id="primary" class="content-area">
+
+	<div class="<?php echo $column_content; ?>">
 		<main id="main" class="site-main" role="main">
 
 		<?php
@@ -41,8 +67,24 @@ get_header(); ?>
 		endif; ?>
 
 		</main><!-- #main -->
+
+	</div><!--col_content-->
+
 	</section><!-- #primary -->
 
+	<div class="sidebar-right">
+	<div class="<?php echo $column_sidebar; ?>">
+
+		<?php
+
+			get_sidebar('right');
+
+		?>
+	</div>
+	</div><!--.sidebar-right-->
+
+
+</div><!--row-->
+</div><!--container-->
 <?php
-get_sidebar();
 get_footer();

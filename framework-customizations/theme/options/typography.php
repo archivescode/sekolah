@@ -10,29 +10,20 @@ $options = array(
 				'type'    => 'box',
 				'options' => array(
 					'general_typography' => array(
-					    'type' => 'typography-v2',
+					    'type'  => 'typography',
 					    'value' => array(
 					        'family' => 'Open Sans',
-					        // For standard fonts, instead of subset and variation you should set 'style' and 'weight'.
-					        // 'style' => 'italic',
-					        // 'weight' => 700,
-					        'subset' => 'latin-ext',
-					        'variation' => 'regular',
-					        'size' => 14,
-					        'line-height' => 13,
-					        //'letter-spacing' => -2,
-					        'color' => '#0000ff'
+					        'size'   => 14,
+					        'style'  => 'regular',
+					        'color'  => '#000000'
 					    ),
-					    'components' => array(
-					        'family'         => true,
-					        // 'style', 'weight', 'subset', 'variation' will appear and disappear along with 'family'
-					        'size'           => true,
-					        'line-height'    => true,
-					        'letter-spacing' => false,
-					        'color'          => true
+					   'components' => array(
+					        'family' => true,
+					        'size'   => true,
+					        'color'  => true
 					    ),
 					    'attr'  => array( 'class' => 'custom-class', 'data-foo' => 'bar' ),
-					    'label' => __('General Typography', 'poc'),
+					    'label' => __('Label', 'poc'),
 					    'desc'  => __('Description', 'poc'),
 					    'help'  => __('Help tip', 'poc'),
 					),

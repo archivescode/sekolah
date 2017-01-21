@@ -38,7 +38,9 @@ get_header(); ?>
 	</div><!--sidebar-left-->
 	
 	<div id="primary" class="content-area">
+
 	<div class="<?php echo $column_content; ?>">
+
 		<main id="main" class="site-main" role="main">
 
 		<?php
@@ -73,7 +75,9 @@ get_header(); ?>
 		endif; ?>
 
 		</main><!-- #main -->
+
 	</div>
+	
 	</div><!-- #primary -->
 
 	<div class="sidebar-right">
