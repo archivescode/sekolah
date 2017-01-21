@@ -18,14 +18,14 @@
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <!--link google font-->
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i|PT+Sans:400,400i,700,700i" rel="stylesheet"> 
-
+<?php get_template_part( 'inc/google', 'font' ); ?>
 <?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
 <?php get_template_part( 'inc/styles' ); ?>
 <div id="page" class="site">
-<?php fw_print(fw_get_db_settings_option('general_typography'));?>
+
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'poc' ); ?></a>
 
 	<header id="masthead" class="site-header" role="banner">

@@ -17,7 +17,8 @@
 			//site layout
 			$site_layout = fw_get_db_settings_option('layout');
 			if($site_layout == "boxed"){
-				echo "#page{-webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.5);-moz-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.5);box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.5);width:".$site_width.";margin:0 auto;}";
+				echo "#page{-webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.5);-moz-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.5);box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.5);max-width:".$site_width.";margin:0 auto;}";
+				echo ".container{max-width:calc(". $site_width ." - 15px);}";
 			}
 			/*=========================================================================
 				Typography
