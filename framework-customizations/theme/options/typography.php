@@ -22,9 +22,9 @@ $options = array(
 					        'size'   => true,
 					        'color'  => true
 					    ),
-					    'label' => __('Label', 'poc'),
-					    'desc'  => __('Description', 'poc'),
-					    'help'  => __('Help tip', 'poc'),
+					    'label' => __('General Typography', 'poc'),
+					    'desc'  => __('General Typography', 'poc'),
+					    'help'  => __('General Typography', 'poc'),
 					),
 					'link_typography' => array(
 					    'type'  => 'typography',
@@ -32,16 +32,15 @@ $options = array(
 					        'family' => 'PT Sans',
 					        'size'   => 14,
 					        'style'  => 'regular',
-					        'color'  => '#000000'
 					    ),
 					   'components' => array(
 					        'family' => true,
 					        'size'   => true,
-					        'color'  => true
+					        'color'  => false
 					    ),
-					    'label' => __('Label', 'poc'),
-					    'desc'  => __('Description', 'poc'),
-					    'help'  => __('Help tip', 'poc'),
+					    'label' => __('Link Typography', 'poc'),
+					    'desc'  => __('Link Typography', 'poc'),
+					    'help'  => __('Link Typography', 'poc'),
 					),
 				)
 			),

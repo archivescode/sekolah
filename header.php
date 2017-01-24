@@ -18,7 +18,9 @@
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <!--link google font-->
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i|PT+Sans:400,400i,700,700i" rel="stylesheet"> 
-<?php get_template_part( 'inc/google', 'font' ); ?>
+<?php get_template_part( 'inc/google', 'font' ); 
+//fw_print(fw_get_db_settings_option('colorScheme'));
+?>
 <?php wp_head(); ?>
 </head>
 

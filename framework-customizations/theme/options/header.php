@@ -34,13 +34,6 @@ $options = array(
 								'desc'	=>	__('Change Header Top Background Color', 'poc'),
 								'help'	=>	__('Change Header Top Background Color', 'poc'),
 							),
-							'header_top_border_top_color'	=> array(
-								'label'	=>	'Header Top Border Color',
-								'type'	=>	'color-picker',
-								'value'	=>	'#0bc165',
-								'desc'	=>	__('Change Header Top Border Color', 'poc'),
-								'help'	=>	__('Change Header Top Border Color', 'poc'),
-							),
 						),
 					),
 					'header_top_left_content' => array(
@@ -114,6 +107,17 @@ $options = array(
 						'value'  => array( 'facebook', 'twitter', 'google-plus' ),
 						'desc'   => __( 'Add Social Media on header Top', 'poc' ),
 						'help'   => __( 'Add Social Media on header Top', 'poc' ),
+					),
+					'social_media_style' => array(
+						'type'    => 'select',
+						'label'   => __( 'Social Media Style', 'poc' ),
+						'choices' => array(
+							'circle'		=> __( 'Circle', 'poc' ),
+							'rounded' 		=> __( 'Rounded', 'poc' ),
+							'flat' 			=> __( 'Flat', 'poc' ),
+							'no_background'	=> __( 'No Background', 'poc' ),
+						),
+						'value'	=> 'circle',
 					),
 				)
 			),
@@ -247,7 +251,6 @@ $options = array(
 					    'desc'    => __('Navigation Position ex:Top, Bottom, Left, Right', 'poc'),
 					    'type'    => 'select',
 					    'choices' => array(
-					        'top'		=> 'Top',
 					        'bottom'	=> 'Bottom',
 					        'right'		=> 'Right',
 					        'left'		=> 'Left',

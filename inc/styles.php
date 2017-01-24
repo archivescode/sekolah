@@ -27,24 +27,28 @@
 			$general_typography = fw_get_db_settings_option('general_typography');
 			//fw_print($general_typography);
 			if(!empty($general_typography)){
-
+				$fontStyle = '';
 				$font_replace = $general_typography['style'];
 				$findme   = '0i';
 				$pos = strpos($font_replace, $findme);
 
-				echo $pos;
-
 				if ($pos === false) {
 					if($font_replace == 'regular'){
-						$font_style = 'normal';
+						$fontStyle .= 'font-weight:400;';
+						$fontStyle .= 'font-style:normal;';
+					}elseif($font_replace == 'italic'){
+						$fontStyle .= 'font-weight:400;';
+						$fontStyle .= 'font-style:italic;';			    	
 					}else{
-				    	$font_style = $font_replace;
+						$fontStyle .= 'font-weight:400;';
 					}
 				} else {
-				    $font_style = str_replace('italic',' italic', $font_replace);
+				    $font_weight = str_replace('italic','', $font_replace);
+				    $fontStyle .= 'font-weight:'.$font_weight.';';
+					$fontStyle .= 'font-style:italic;';	
 				}
 				
-				$font = 'font-weight: '. $font_style .'; font-size:  '.$general_typography['size'] .'px; font-family:  '. $general_typography['family'];
+				$font = $fontStyle .'; font-size:  '.$general_typography['size'] .'px; font-family:  '. $general_typography['family'];
 				echo 'html, html body{'. $font .';color: '.$general_typography['color'].';}';
 			}
 			/*=========================================================================
@@ -53,11 +57,6 @@
 			$show_header_top = fw_get_db_settings_option('show_header_top');
 			if ($show_header_top == 'no') {
 				echo '.header-top-wrap{display:none;}';
-			}
-			$header_top_border_color = fw_get_db_settings_option('header_top_border_top_color');
-
-			if(!empty($header_top_border_color)){
-				echo 'header .header-top-wrap{border-top-color: '.$header_top_border_color.'}';
 			}
 
 			$header_top_background = fw_get_db_settings_option('header_top_background');
@@ -158,4 +157,10 @@
 			}
 		}
 	?>
+
+/*======================================================================================
+	color scheme include
+======================================================================================*/
+<?php require 'color-scheme.php'; ?>
+
 </style>
