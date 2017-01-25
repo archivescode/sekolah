@@ -26,6 +26,23 @@ $options = array(
 					    'desc'  => __('General Typography', 'poc'),
 					    'help'  => __('General Typography', 'poc'),
 					),
+					'desc_typography' => array(
+					    'type'  => 'typography',
+					    'value' => array(
+					        'family' => 'Open Sans',
+					        'size'   => 14,
+					        'style'  => 'regular',
+					        'color'  => '#000000'
+					    ),
+					   'components' => array(
+					        'family' => true,
+					        'size'   => true,
+					        'color'  => true
+					    ),
+					    'label' => __('Blog Description Typography', 'poc'),
+					    'desc'  => __('Blog Description Typography', 'poc'),
+					    'help'  => __('Blog Description Typography', 'poc'),
+					),
 					'link_typography' => array(
 					    'type'  => 'typography',
 					    'value' => array(

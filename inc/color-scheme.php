@@ -36,6 +36,8 @@
 
 			$cssAll = 'header .header-top-wrap{border-top-color: '.$typeColorAll.'}';
 			$cssAll .= 'a{color: '.$typeColorAll.'}';
+			$cssAll .= '.navigation li a{background-color: '.$typeColorAll.'}';
+			$cssAll .= '.navigation li a:hover, .navigation li.active a{background-color: '.$link_hover_all.'}';
 			$cssAll .= 'a:active, a:hover, a:focus{color: '.$link_hover_all.'}';
 
 			echo $cssAll;

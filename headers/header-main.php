@@ -7,7 +7,7 @@
 
 				<div class="row">
 
-					<div class="col-sm-3">
+					<div class="col-sm-5">
 				    <!-- Brand and toggle get grouped for better mobile display -->
 				    <div class="navbar-header">
 				    	      	
@@ -47,7 +47,7 @@
 
 				    </div>
 
-				    <div class="col-sm-9">
+				    <div class="col-sm-7">
 
 				    <!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="poc-nav-collapse">

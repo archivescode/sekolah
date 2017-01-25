@@ -8,8 +8,12 @@
 $options = array(
 	fw()->theme->get_options( 'general-settings' ),
 	fw()->theme->get_options( 'header' ),
+	fw()->theme->get_options( 'navigation' ),
+	fw()->theme->get_options( 'slider' ),
+	fw()->theme->get_options( 'content' ),
+	fw()->theme->get_options( 'sidebar' ),
+	fw()->theme->get_options( 'footer' ),
 	fw()->theme->get_options( 'typography' ),
 	fw()->theme->get_options( 'color-scheme' ),
-	fw()->theme->get_options( 'social-media' ),
-	fw()->theme->get_options( 'footer' ),
+	fw()->theme->get_options( 'social-media' ),	
 );

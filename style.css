@@ -803,6 +803,14 @@ header .header-top-wrap{
 }
 
 /*==================================================================================
+	conten area
+====================================================================================*/
+
+.site-content{
+	background: #ffffff;
+}
+
+/*==================================================================================
 	navigation
 ====================================================================================*/
 .navbar{
@@ -811,6 +819,7 @@ header .header-top-wrap{
     box-shadow: inherit;
     border: none;
     border-radius: 0;
+    margin-bottom: 0px;
 }
 #poc-nav-collapse{
 	border: none;
@@ -847,6 +856,7 @@ header .header-top-wrap{
    	min-width: 160px;
     box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.2);
     top: 100%;
+    z-index: 99;
 }
 .sub-menu > li > ul {
   padding: 0;
@@ -904,6 +914,9 @@ header .header-top-wrap{
 /*==================================================================================
 		Footer
 ====================================================================================*/
+footer.site-footer{
+	background:#333	;
+}
 footer .site-info{
 	text-align: center;
 }

@@ -8,10 +8,12 @@ if ( function_exists('fw_get_db_settings_option') ) {
 	$google_fonts = fw_get_google_fonts();
 
 	$general_typography = fw_get_db_settings_option('general_typography/family');
+	$desc_typography = fw_get_db_settings_option('desc_typography/family');
 	$link_typography = fw_get_db_settings_option('link_typography/family');
 
 	$allTypo = array( 
 		$general_typography => $google_fonts[$general_typography] ,
+		$desc_typography => $google_fonts[$desc_typography] ,
 		$link_typography => $google_fonts[$link_typography] ,
 	);
 

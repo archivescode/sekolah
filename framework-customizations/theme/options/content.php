@@ -1,43 +1,15 @@
 <?php if ( ! defined( 'FW' ) ) {	die( 'Forbidden' );}
 
 $options = array(
-	'footer' => array(
-		'title'   => __( 'Footer', 'poc' ),
+	'content' => array(
+		'title'   => __( 'Content', 'poc' ),
 		'type'    => 'tab',
 		'options' => array(
-			'footer-box' => array(
-				'title'   => __( 'Footer Settings', 'poc' ),
+			'content-box' => array(
+				'title'   => __( 'Content Settings', 'poc' ),
 				'type'    => 'box',
 				'options' => array(
-					'footer_show' => array(
-						'label'        => __( 'Display Footer', 'poc' ),
-						'type'         => 'switch',
-						'right-choice' => array(
-							'value' => 'yes',
-							'label' => __( 'Yes', 'poc' )
-						),
-						'left-choice'  => array(
-							'value' => 'no',
-							'label' => __( 'No', 'poc' )
-						),
-						'value'        => 'yes',
-						'desc'         => __( 'Display Footer', 'poc' ),
-						'help'         => __( 'Display Footer', 'poc' ),
-					),
-					'footer_column' => array(
-					    'label'   => __('Footer Column', 'poc'),
-					    'desc'    => __('Footer Column', 'poc'),
-					    'value'		=> '3',
-					    'type'    => 'select',
-					    'choices' => array(
-					        '1'	=> '1',
-					        '2'	=> '2',
-					        '3'	=> '3',
-					        '4'	=> '4',
-					    ),
-					    'help'	  => __('Footer Column', 'poc'),
-					),
-					'footer_bg_color' => array(
+					'content_bg_color' => array(
 						'label' => __( 'Background Color', 'poc' ),
 						'type'  => 'rgba-color-picker',
 						'value' => '',
@@ -45,7 +17,7 @@ $options = array(
 							'poc' ),
 						'help'  => __( 'Controls the background color of the header.','poc'),
 					),
-					'footer_bg_image'	=> array(
+					'content_bg_image'	=> array(
 						'label' => __( 'Background Image for header', 'poc' ),
 						'desc'  => __( 'Select an image to use for header.',
 							'poc' ),
@@ -53,7 +25,7 @@ $options = array(
 						'help'  => __( 'Select an image to use for header.',
 							'poc' ),
 					),
-					'footer_bg_size' => array(
+					'content_bg_size' => array(
 						'label'   => __( 'Background Image size', 'poc' ),
 						'type'    => 'select',
 						'show_borders' => false,
@@ -65,7 +37,7 @@ $options = array(
 						'desc'    => __( 'Background Image size.', 'poc' ),
 						'help'    => __( 'Background Image size.', 'poc' ),
 					),
-					'footer_bg_position' => array(
+					'content_bg_position' => array(
 						'label'   => __( 'Background Image position', 'poc' ),
 						'type'    => 'select',
 						'show_borders' => false,
@@ -84,7 +56,7 @@ $options = array(
 						'desc'    => __( 'Background Image position.', 'poc' ),
 						'help'    => __( 'Background Image position.', 'poc' ),
 					),
-					'footer_bg_repeat' => array(
+					'content_bg_repeat' => array(
 					    'label'   => __('Background Repeat', 'poc'),
 					    'desc'    => __('Select how the background image repeats', 'poc'),
 					    'type'    => 'select',

@@ -2,7 +2,7 @@
 
 $options = array(
 	'social-media' => array(
-		'title'   => __( 'Social Accounts', 'poc' ),
+		'title'   => __( 'Social', 'poc' ),
 		'type'    => 'tab',
 		'options' => array(
 			'social-box' => array(

@@ -18,7 +18,7 @@
 			$site_layout = fw_get_db_settings_option('layout');
 			if($site_layout == "boxed"){
 				echo "#page{-webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.5);-moz-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.5);box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.5);max-width:".$site_width.";margin:0 auto;}";
-				echo ".container{max-width:calc(". $site_width ." - 15px);}";
+				echo ".container{max-width:calc(". $site_width .");}";
 			}
 			/*=========================================================================
 				Typography
@@ -48,8 +48,38 @@
 					$fontStyle .= 'font-style:italic;';	
 				}
 				
-				$font = $fontStyle .'; font-size:  '.$general_typography['size'] .'px; font-family:  '. $general_typography['family'];
+				$font = $fontStyle .' font-size:  '.$general_typography['size'] .'px; font-family:  '. $general_typography['family'];
 				echo 'html, html body{'. $font .';color: '.$general_typography['color'].';}';
+			}
+
+			// description typography
+
+			$desc_typography = fw_get_db_settings_option('desc_typography');
+			//fw_print($dec_typography);
+			if(!empty($desc_typography)){
+				$fontStyle = '';
+				$font_replace = $desc_typography['style'];
+				$findme   = '0i';
+				$pos = strpos($font_replace, $findme);
+
+				if ($pos === false) {
+					if($font_replace == 'regular'){
+						$fontStyle .= 'font-weight:400;';
+						$fontStyle .= 'font-style:normal;';
+					}elseif($font_replace == 'italic'){
+						$fontStyle .= 'font-weight:400;';
+						$fontStyle .= 'font-style:italic;';			    	
+					}else{
+						$fontStyle .= 'font-weight:400;';
+					}
+				} else {
+				    $font_weight = str_replace('italic','', $font_replace);
+				    $fontStyle .= 'font-weight:'.$font_weight.';';
+					$fontStyle .= 'font-style:italic;';	
+				}
+				
+				$font = $fontStyle .' font-size:  '.$desc_typography['size'] .'px; font-family:  '. $desc_typography['family'];
+				echo '.site-description{'. $font .';color: '.$desc_typography['color'].';}';
 			}
 			/*=========================================================================
 				Header Top Style
@@ -132,6 +162,61 @@
 			}
 
 			/*========================================================================
+				Content Option
+			==========================================================================*/
+			$content_bg_color = fw_get_db_settings_option('content_bg_color');
+
+			if(!empty($content_bg_color)){
+				echo '.site-content{background-color: '.$content_bg_color.';}';
+			}
+			$content_bg_image = fw_get_db_settings_option('content_bg_image');
+
+			if(!empty($content_bg_image)){
+				echo '.site-content{background-image: url('.$content_bg_image['url'].');}';
+			}
+
+			$content_bg_size = fw_get_db_settings_option('content_bg_size');
+
+			if(!empty($content_bg_size)){
+				if ($content_bg_size == 'contain') {
+					echo '.site-content{background-size: contain;}';
+				}elseif ($content_bg_size == 'cover') {
+					echo '.site-content{background-size: cover;}';
+				}
+			}
+
+			$content_bg_position = fw_get_db_settings_option('content_bg_position');
+
+			if(!empty($content_bg_position)){
+				if ($content_bg_position == 'left-top') {
+					echo '.site-content{background-position: left top;}';
+				}elseif ($content_bg_position == 'left-center') {
+					echo '.site-content{background-position: left center;}';
+				}elseif ($content_bg_position == 'left-bottom') {
+					echo '.site-content{background-position: left bottom;}';
+				}elseif ($content_bg_position == 'right-top') {
+					echo '.site-content{background-position: right top;}';
+				}elseif ($content_bg_position == 'right-center') {
+					echo '.site-content{background-position: right center;}';
+				}elseif ($content_bg_position == 'right-bottom') {
+					echo '.site-content{background-position: right bottom;}';
+				}elseif ($content_bg_position == 'center-top') {
+					echo '.site-content{background-position: center top;}';
+				}elseif ($content_bg_position == 'center-center') {
+					echo '.site-content{background-position: center center;}';
+				}elseif ($content_bg_position == 'center-bottom') {
+					echo '.site-content{background-position: center bottom;}';
+				}
+			}
+
+			// content background repeat
+			$content_bg_repeat = fw_get_db_settings_option('content_bg_repeat');
+
+			if(!empty($content_bg_repeat)){
+				echo '.site-content{background-repeat: '.$content_bg_repeat.';}';
+			}
+
+			/*========================================================================
 				Sidebar Style
 			==========================================================================*/
 			$sidebar = fw_get_db_settings_option('sidebar');
@@ -154,6 +239,58 @@
 				echo ".footer-top-three, .footer-top-four{display:none;}";
 			}elseif ($footer_column == 3) {
 				echo ".footer-top-four{display:none;}";
+			}
+
+			$footer_bg_color = fw_get_db_settings_option('footer_bg_color');
+
+			if(!empty($footer_bg_color)){
+				echo 'footer.site-footer{background-color: '.$footer_bg_color.';}';
+			}
+			$footer_bg_image = fw_get_db_settings_option('footer_bg_image');
+
+			if(!empty($footer_bg_image)){
+				echo 'footer.site-footer{background-image: url('.$footer_bg_image['url'].');}';
+			}
+
+			$footer_bg_size = fw_get_db_settings_option('footer_bg_size');
+
+			if(!empty($footer_bg_size)){
+				if ($footer_bg_size == 'contain') {
+					echo 'footer.site-footer{background-size: contain;}';
+				}elseif ($footer_bg_size == 'cover') {
+					echo 'footer.site-footer{background-size: cover;}';
+				}
+			}
+
+			$footer_bg_position = fw_get_db_settings_option('footer_bg_position');
+
+			if(!empty($footer_bg_position)){
+				if ($footer_bg_position == 'left-top') {
+					echo 'footer.site-footer{background-position: left top;}';
+				}elseif ($footer_bg_position == 'left-center') {
+					echo 'footer.site-footer{background-position: left center;}';
+				}elseif ($footer_bg_position == 'left-bottom') {
+					echo 'footer.site-footer{background-position: left bottom;}';
+				}elseif ($footer_bg_position == 'right-top') {
+					echo 'footer.site-footer{background-position: right top;}';
+				}elseif ($footer_bg_position == 'right-center') {
+					echo 'footer.site-footer{background-position: right center;}';
+				}elseif ($footer_bg_position == 'right-bottom') {
+					echo 'footer.site-footer{background-position: right bottom;}';
+				}elseif ($footer_bg_position == 'center-top') {
+					echo 'footer.site-footer{background-position: center top;}';
+				}elseif ($footer_bg_position == 'center-center') {
+					echo 'footer.site-footer{background-position: center center;}';
+				}elseif ($footer_bg_position == 'center-bottom') {
+					echo 'footer.site-footer{background-position: center bottom;}';
+				}
+			}
+
+			// content background repeat
+			$footer_bg_repeat = fw_get_db_settings_option('footer_bg_repeat');
+
+			if(!empty($footer_bg_repeat)){
+				echo 'footer.site-footer{background-repeat: '.$footer_bg_repeat.';}';
 			}
 		}
 	?>
