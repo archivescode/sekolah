@@ -161,6 +161,19 @@
 				echo 'header .site-logo a img{height: '. $logo_height .';}';
 			}
 
+			/*=========================================================================
+				Navigation
+			==========================================================================*/
+			$show_nav = fw_get_db_settings_option('show_nav');
+
+			if(!empty($show_nav) && $show_nav == 'no'){
+				echo '#poc-nav-collapse.navbar-collapse.collapse{display: none !important;}';
+			}
+			$nav_height = fw_get_db_settings_option('nav_height');
+
+			if(!empty($nav_height)){
+				echo '#poc-nav-collapse .menu li a{line-height: '.$nav_height.';height:'.$nav_height.';}';
+			}
 			/*========================================================================
 				Content Option
 			==========================================================================*/
