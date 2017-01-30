@@ -10,11 +10,13 @@ if ( function_exists('fw_get_db_settings_option') ) {
 	$general_typography = fw_get_db_settings_option('general_typography/family');
 	$desc_typography = fw_get_db_settings_option('desc_typography/family');
 	$link_typography = fw_get_db_settings_option('link_typography/family');
+	$nav_typography =  fw_get_db_settings_option('nav_typography/family');
 
 	$allTypo = array( 
 		$general_typography => $google_fonts[$general_typography] ,
 		$desc_typography => $google_fonts[$desc_typography] ,
 		$link_typography => $google_fonts[$link_typography] ,
+		$nav_typography => $google_fonts[$nav_typography] ,
 	);
 
 	$html .= "<link href='http://fonts.googleapis.com/css?family=";
@@ -32,4 +34,5 @@ if ( function_exists('fw_get_db_settings_option') ) {
  	echo $html;
 
 }
+
 ?>

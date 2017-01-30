@@ -1,67 +1,79 @@
+<?php 
+if ( function_exists('fw_get_db_settings_option') && !empty(fw_get_db_settings_option('nav_position')) ) {
+	$nav_position = fw_get_db_settings_option('nav_position');
+
+	$column_logo = 'col-sm-4';
+	$column_nav = 'col-sm-8 nav_main';
+
+	if ($nav_position == 'right') {
+		$column_logo = 'col-sm-4';
+		$column_nav = 'col-sm-8 nav_main';
+	} elseif ($nav_position == 'bottom') {
+		$column_logo = 'col-sm-12';
+		$column_nav = 'col-sm-12 nav_main';
+	}
+	
+}
+?>
+<div class="container">
+<div class="row">
+
+		<nav class="navbar navbar-default">
+
 		<div class="container">
+
 		<div class="row">
 
-				<nav class="navbar navbar-default">
+			<div class="<?php echo $column_logo; ?>">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		    	      	
+			    <?php
 
-				<div class="container">
+				//Logo
 
-				<div class="row">
+				if ( function_exists('fw_get_db_settings_option') && !empty(fw_get_db_settings_option('logo')) ) {
+					$logo = fw_get_db_settings_option('logo');
 
-					<div class="col-sm-5">
-				    <!-- Brand and toggle get grouped for better mobile display -->
-				    <div class="navbar-header">
-				    	      	
-					    <?php
+					echo '<div class="site-logo"><a href="' . esc_url( home_url( '/' ) ) . '" rel="home"><img src="' . $logo['url'] . '" /></a></div>';
 
-						//Logo
+				}else{
 
-						if ( function_exists('fw_get_db_settings_option') && !empty(fw_get_db_settings_option('logo')) ) {
-							$logo = fw_get_db_settings_option('logo');
+					echo '<div class="site-logo"><a href="' . esc_url( home_url( '/' ) ) . '" rel="home"><img src="' . get_template_directory_uri() . '/images/logo.png" /></a></div>';
+				}
 
-							echo '<div class="site-logo"><a href="' . esc_url( home_url( '/' ) ) . '" rel="home"><img src="' . $logo['url'] . '" /></a></div>';
+					$description = get_bloginfo( 'description', 'display' );
+					if ( $description || is_customize_preview() ) : ?>
+						<div class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></div>
+					<?php
+					endif; ?>
 
-						}else{
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#poc-nav-collapse" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		    </button>
 
-							if ( is_front_page() && is_home() ) : ?>
-								<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-							<?php else : ?>
-								<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-							<?php
-							endif;
-						}
+			</div>
 
-							$description = get_bloginfo( 'description', 'display' );
-							if ( $description || is_customize_preview() ) : ?>
-								<div class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></div>
-							<?php
-							endif; ?>
+		    </div>
 
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#poc-nav-collapse" aria-expanded="false">
-				        <span class="sr-only">Toggle navigation</span>
-				        <span class="icon-bar"></span>
-				        <span class="icon-bar"></span>
-				        <span class="icon-bar"></span>
-				    </button>
+		    <div class="<?php echo $column_nav; ?>">
 
-					</div>
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="poc-nav-collapse">
+				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>
+			</div>
 
-				    </div>
+			</div>
 
-				    <div class="col-sm-7">
+		</div><!--row-->
 
-				    <!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse" id="poc-nav-collapse">
-						<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>
-					</div>
+		</div> <!--container-->
 
-					</div>
+		</nav>
 
-				</div><!--row-->
-
-				</div> <!--container-->
-
-				</nav>
-
-		</div>
-	</div>
+</div>
+</div>
 

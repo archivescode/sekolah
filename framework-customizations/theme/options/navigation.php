@@ -37,8 +37,7 @@ $options = array(
 					    'type'    => 'select',
 					    'choices' => array(
 					        'bottom'	=> 'Bottom',
-					        'right'		=> 'Right',
-					        'left'		=> 'Left',
+					        'right'		=> 'Right'
 					    ),
 					    'value'		=> __('right', 'poc'),
 					    'help'	  	=> __('Navigation Position ex:Top, Bottom, Left, Right', 'poc'),
@@ -46,10 +45,34 @@ $options = array(
 					'nav_bg_color' => array(
 						'label' => __( 'Navigation Background Color', 'poc' ),
 						'type'  => 'rgba-color-picker',
-						'value'	=>	'#0bc165',
+						'value'	=>	'',
 						'desc'  => __( 'Controls the background color of the navigation background.',
 							'poc' ),
 						'help'  => __( 'Controls the background color the navigation background.','poc'),
+					),
+					'nav_typography' => array(
+					    'type'  => 'typography',
+					    'value' => array(
+					        'family' => 'Open Sans',
+					        'size'   => 14,
+					        'style'  => '600',
+					        'color'	 => ''
+					    ),
+					   'components' => array(
+					        'family' => true,
+					        'size'   => true,
+					        'color'  => true
+					    ),
+					    'label' => __('Navigation Typography', 'poc'),
+					    'desc'  => __('Navigation Typography', 'poc'),
+					    'help'  => __('Navigation Typography', 'poc'),
+					),
+					'nav_hover' => array(
+						'label' => __( 'Hover Menu Color', 'poc' ),
+						'type'  => 'rgba-color-picker',
+						'value'	=>	'',
+						'desc'  => __( 'Hover Menu Color', 'poc' ),
+						'help'  => __( 'Hover Menu Color','poc'),
 					),
 				)
 			),

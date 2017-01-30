@@ -8,11 +8,11 @@
  */
 if ( function_exists('fw_get_db_settings_option') && !empty(fw_get_db_settings_option('sidebar')) ) {
 	$sidebar = fw_get_db_settings_option('sidebar');
-	$column_content = 'col-sm-12';
+	$column_content = 'col-sm-9';
 	$column_sidebar = 'col-sm-3';
 	if($sidebar == 'left' || $sidebar == 'right'){
 		$column_sidebar = 'col-sm-3';
-		$column_content = 'col-sm-8';
+		$column_content = 'col-sm-9';
 	}elseif ($sidebar == 'left_right') {
 		$column_sidebar = 'col-sm-3';
 		$column_content = 'col-sm-6';

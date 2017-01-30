@@ -15,7 +15,7 @@ $options = array(
 					        'family' => 'Open Sans',
 					        'size'   => 14,
 					        'style'  => 'regular',
-					        'color'  => '#000000'
+					        'color'  => '#747474'
 					    ),
 					   'components' => array(
 					        'family' => true,
@@ -32,7 +32,7 @@ $options = array(
 					        'family' => 'Open Sans',
 					        'size'   => 14,
 					        'style'  => 'regular',
-					        'color'  => '#000000'
+					        'color'  => '#747474'
 					    ),
 					   'components' => array(
 					        'family' => true,
@@ -46,7 +46,7 @@ $options = array(
 					'link_typography' => array(
 					    'type'  => 'typography',
 					    'value' => array(
-					        'family' => 'PT Sans',
+					        'family' => 'Open Sans',
 					        'size'   => 14,
 					        'style'  => 'regular',
 					    ),

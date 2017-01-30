@@ -14,14 +14,6 @@ $options = array(
 					    'desc'  => false,
 					    'value' => array(
 					        'type_color' => 'all',
-					        'laptop' => array(
-					            'price' => '123',
-					            'webcam' => false
-					        ),
-					        'phone' => array(
-					            'price' => '456',
-					            'memory' => '32'
-					        )
 					    ),
 					    'picker' => array(
 					        'type_color' => array(

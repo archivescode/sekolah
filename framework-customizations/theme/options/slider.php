@@ -32,6 +32,20 @@ $options = array(
 					    'choices' => fw()->extensions->get('slider')->get_populated_sliders_choices(),
 					    'help'	  => __('Slider Choice', 'poc'),
 					),
+					'slider_width' => array(
+						'type' => 'text',
+						'label' => __('Slider Width', 'poc'),
+						'value' => '1170px',
+						'desc'	=> __('Controls the Slider width. In px or %, ex: 100% or 1170px.', 'poc'),
+						'help'	=> __('Controls the Slider width. In px or %, ex: 100% or 1170px.', 'poc'),
+					),
+					'slider_height' => array(
+						'type' => 'text',
+						'label' => __('Slider Height', 'poc'),
+						'value' => '700px',
+						'desc'	=> __('Controls the slider Height. In px or %, ex: 100% or 700px.', 'poc'),
+						'help'	=> __('Controls the slider Height. In px or %, ex: 100% or 700px.', 'poc'),
+					),
 				)
 			),
 		)

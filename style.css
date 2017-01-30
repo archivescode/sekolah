@@ -55,6 +55,7 @@ html {
 
 body {
 	margin: 0;
+	background: url('images/main-bg.jpg');
 }
 
 article,
@@ -352,10 +353,6 @@ html {
 	box-sizing: inherit;
 }
 
-body {
-	background: #fff; /* Fallback for when there is no custom background color defined. */
-}
-
 blockquote:before,
 blockquote:after,
 q:before,
@@ -637,11 +634,6 @@ textarea {
 	margin: 0 0 1.5em;
 }
 
-.byline,
-.updated:not(.published) {
-	display: none;
-}
-
 .single .byline,
 .group-blog .byline {
 	display: inline;
@@ -782,9 +774,9 @@ object {
 .social-links a:last-child .fa{margin-right: 0px} 
 .social-links a{margin-right: 3px;display: block;float: left;}
 .social-links a .fa{
-	font-size: 18px; 
-	width:32px;
-	height:32px;
+	font-size: 14px; 
+	width:26px;
+	height:26px;
 	text-align: center;
 	display: table-cell;
 	vertical-align: middle;
@@ -797,18 +789,74 @@ object {
 /*==================================================================================
 		Header
 ====================================================================================*/
+#masthead{background: #ffffff;}
+header .header-main-wrap{
+	border-bottom: 1px solid #e1e1e1;
+}
 header .header-top-wrap{
 	border-top : 5px solid #ffffff;
-	padding: 10px 0px;
+	padding: 5px 0px;
+	border-bottom : 1px solid #e1e1e1;
+	font-size: 12px;
 }
-
+header .site-title{margin: 0px;}
+header .navbar{background: #ffffff;}
+header .navbar .navbar-header{padding: 5px 0px;}
 /*==================================================================================
-	conten area
-====================================================================================*/
-
-.site-content{
-	background: #ffffff;
+	navigation top
+====================================================================================*/	
+.header-top-wrap ul.ul-top-menu{
+	display: block;
+	margin: 0px;
+	padding: 0px;
+	min-height: 10px;
 }
+.header-top-wrap ul.ul-top-menu > li{
+	position: relative;
+	display: inline-block;
+	padding-right: 27px;	
+}
+
+.header-top-wrap ul.ul-top-menu > li > a{
+	position: relative;
+	display: block;
+	height: 33px;
+	line-height: 33px;
+}
+.header-top-wrap ul.ul-top-menu > li:hover .sub-menu{
+	display: block;
+}
+.header-top-wrap ul.ul-top-menu ul.sub-menu {
+	display: none;
+    position: absolute;
+    margin-left: 0px;
+    top: 100%;
+    z-index: 99;
+    background-color: #edecec;
+	width: 215px;
+	border-top: 3px solid #0bc165;
+	box-shadow: 1px 1px 30px rgba(0,0,0,.06);
+	-webkit-box-shadow: 1px 1px 30px rgba(0,0,0,.06);
+	-moz-box-shadow: 1px 1px 30px rgba(0,0,0,.06);
+	transition: opacity .2s ease-in;
+}
+ul.ul-top-menu .sub-menu > li{
+	float: left;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	cursor: pointer;
+}
+ul.ul-top-menu .sub-menu > li > a{
+	border: 0;
+	display: block;
+	padding: 7px 20px;
+	line-height: 19px;
+	text-indent: 0;
+	height: auto;
+	transition: color .2s ease-in-out,background-color .2s ease-in-out,border-color .2s ease-in-out,height 0s,line-height 0s;
+}
+
 
 /*==================================================================================
 	navigation
@@ -826,65 +874,119 @@ header .header-top-wrap{
 	border-radius: 0;
 }
 #poc-nav-collapse .menu{
-	display: table;
+	display: block;
 	margin: 0px;
 	padding: 0px;
 	min-height: 10px;
 }
-#poc-nav-collapse .menu li{
+#poc-nav-collapse .menu > li{
 	position: relative;
-	vertical-align: middle;
-	display: table-cell;
+	display: inline-block;
 	padding-right: 27px;	
 }
 
-#poc-nav-collapse .menu li a{
+#poc-nav-collapse .menu > li > a{
 	position: relative;
 	display: block;
 	height: 83px;
 	line-height: 83px;
+	border-top: 3px solid transparent;
+	font-weight: 600;
+	transition: all .3s ease-in;
 }
-
-.menu-item-has-children {
-  position: static !important;
+#poc-nav-collapse .menu > li:hover > a, 
+#poc-nav-collapse .menu > li:focus > a, 
+#poc-nav-collapse .menu > li:active > a{
+	border-top-color: #0bc165;
 }
-#poc-nav-collapse .menu li:hover .sub-menu{
-	display: block;
+#poc-nav-collapse .menu > li.current-menu-item a{
+	border-top-color: #0bc165;
 }
-.sub-menu {
-	display: none;
+#poc-nav-collapse ul.menu li:hover > ul.sub-menu{
+	visibility: visible;
+}
+.menu li .sub-menu {
+	visibility: hidden;
     position: absolute;
-    background-color: #f9f9f9;
     margin-left: 0px;
-   	min-width: 160px;
-    box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.2);
     top: 100%;
     z-index: 99;
+    background-color: #edecec;
+	width: 215px;
+	border-top: 3px solid #0bc165;
+	box-shadow: 1px 1px 30px rgba(0,0,0,.06);
+	-webkit-box-shadow: 1px 1px 30px rgba(0,0,0,.06);
+	-moz-box-shadow: 1px 1px 30px rgba(0,0,0,.06);
+	transition: opacity .2s ease-in;
 }
-.sub-menu > li > ul {
-  padding: 0;
-  margin: 1px;
+.sub-menu li{
+	margin: 0;
+	padding: 0;
+	position: relative;
+	cursor: pointer;
+	display: block;
+	border-bottom: 1px solid #cccccc;
 }
-.sub-menu > li > ul > li {
-  list-style: none;
+.sub-menu li a{
+	border: 0;
+	display: block;
+	padding: 7px 20px;
+	line-height: 19px;
+	text-indent: 0;
+	height: auto;
+	transition: color .2s ease-in-out,background-color .2s ease-in-out,border-color .2s ease-in-out,height 0s,line-height 0s;
 }
-.sub-menu > li > ul > li > a {
-  display: block;
-  color: #222;
-  padding: 3px 5px;
+.menu li .sub-menu li ul.sub-menu {
+  top: -3px;
+  left: 100%;
+  visibility: hidden;
 }
-.sub-menu > li ul > li > a:hover,
-.sub-menu > li ul > li > a:focus {
-  text-decoration: none;
+.menu li ul.sub-menu > li:hover > ul{
+	visibility: visible;
 }
-.sub-menu .dropdown-header {
-  font-size: 18px;
-  color: #ff3546;
-  padding: 5px 60px 5px 5px;
-  line-height: 30px;
+.menu li .sub-menu li.menu-hover-left ul.sub-menu{
+	left: -100%;
 }
-
-
+.nav_main{
+	background: transparent;
+}
+#poc-nav-collapse.collapse.in #primary-menu li{
+	width: 100%;
+	display: block;
+	padding: 10px 0px;
+}
+#poc-nav-collapse.collapse.in #primary-menu li a{
+	height: 30px;
+	line-height: 30px;
+}
+/*==================================================================================
+	conten area
+====================================================================================*/
+.content-area{
+	display: block;
+	padding-top: 25px;
+	padding-bottom: 20px;
+}
+.site-content{
+	background: #ffffff;
+}
+.site-content .entry-title{
+	font-size: 24px;
+}
+.content-area .entry-footer{
+	font-size: 12px;
+	font-weight: 400;
+	border-top: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1;
+	padding: 1px 0px 5px;
+}
+.entry-footer .sep{
+	padding: 0px 3px;
+}
+.entry-footer .read-more{
+	float: right;
+	padding-top: 1px;
+}
 /*==================================================================================
 	Pagination
 ====================================================================================*/
@@ -914,14 +1016,69 @@ header .header-top-wrap{
 .navigation li.active a {
 	background-color: #3C8DC5;
 }
+
+/*==================================================================================
+	Sidebar
+====================================================================================*/
+.sidebar-left, .sidebar-right{
+	padding: 25px 0px;
+}
+.widget h2.widget-title{
+	font-size: 18px;
+	padding: 10px;
+	border: 1px solid #e1e1e1;
+	margin: 0px;
+	background: #0bc165;
+	font-weight: 700;
+	color: #ffffff;
+}
+.widget ul{
+	border: 1px solid #e1e1e1;
+	border-top-width: 0px;
+}
+.widget ul li{
+	padding: 10px;
+	border-bottom: 1px solid #e1e1e1;
+}
+.widget{
+	margin-bottom: 35px;
+}
+.widget_search{
+	margin-top: 20px;
+	margin-bottom: 10px;
+	position: relative;
+}
+.widget_search label{
+	display: block;
+}
+.widget_search .search-field{
+	display: block;
+	width: 100%;
+	border-radius: 0px;
+}
+.widget_search .search-submit{
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: none;
+}
 /*==================================================================================
 		Footer
 ====================================================================================*/
+footer .footer-bottom{
+	padding: 5px 0px;
+	background: #282a2b;
+	border-top: 2px solid #4b4c4d;
+}
+footer .footer-top h2{
+	font-size: 24px;
+}
 footer.site-footer{
 	background:#333	;
 }
 footer .site-info{
 	text-align: center;
+	color: #ffffff;
 }
 /*==================================================================================
 		Fix pagebuilder column
