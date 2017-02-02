@@ -28,12 +28,12 @@ if ( defined( 'FW' ) && function_exists( 'fw_ext_social_twitter_get_connection' 
 			$title         = str_replace( 'class="', 'class="widget_twitter_tweets ', $before_title ) . $title . $after_title;
 			$title         = $before_title . $title . $after_title;
 
-//		wp_enqueue_script(
-//			'fw-theme-twitter-widget',
-//			get_template_directory_uri() . '/inc/widgets/twitter/static/js/scripts.js',
-//			array( 'jquery' ),
-//			'1.0'
-//		);
+		wp_enqueue_script(
+			'fw-theme-twitter-widget',
+			get_template_directory_uri() . '/inc/widgets/twitter/static/js/scripts.js',
+			array( 'jquery' ),
+			'1.0'
+		);
 
 			$tweets = get_site_transient( 'scratch_tweets_' . $user . '_' . $number );
 

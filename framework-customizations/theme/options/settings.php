@@ -14,6 +14,5 @@ $options = array(
 	fw()->theme->get_options( 'sidebar' ),
 	fw()->theme->get_options( 'footer' ),
 	fw()->theme->get_options( 'typography' ),
-	fw()->theme->get_options( 'color-scheme' ),
 	fw()->theme->get_options( 'social-media' ),	
 );

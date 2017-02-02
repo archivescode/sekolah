@@ -35,14 +35,14 @@ $options = array(
 					'slider_width' => array(
 						'type' => 'text',
 						'label' => __('Slider Width', 'poc'),
-						'value' => '1170px',
-						'desc'	=> __('Controls the Slider width. In px or %, ex: 100% or 1170px.', 'poc'),
-						'help'	=> __('Controls the Slider width. In px or %, ex: 100% or 1170px.', 'poc'),
+						'value' => '1170',
+						'desc'	=> __('Controls the Slider width. In px, ex: 100% or 1170.', 'poc'),
+						'help'	=> __('Controls the Slider width. In px, ex: 100% or 1170.', 'poc'),
 					),
 					'slider_height' => array(
 						'type' => 'text',
 						'label' => __('Slider Height', 'poc'),
-						'value' => '700px',
+						'value' => '500',
 						'desc'	=> __('Controls the slider Height. In px or %, ex: 100% or 700px.', 'poc'),
 						'help'	=> __('Controls the slider Height. In px or %, ex: 100% or 700px.', 'poc'),
 					),

@@ -33,6 +33,20 @@ $options = array(
 						'desc'	=> __('Controls the overall site width. In px or %, ex: 100% or 1170px.', 'poc'),
 						'help'	=> __('Controls the overall site width. In px or %, ex: 100% or 1170px.', 'poc'),
 					),
+					'link_color'	=> array(
+						'label'	=>	'Link Color',
+						'type'	=>	'rgba-color-picker',
+						'value'	=>	'#0bc165',
+						'desc'	=>	__('Change Link Color', 'poc'),
+						'help'	=>	__('Change Link Color', 'poc'),
+					),
+					'link_hover'	=> array(
+						'label'	=>	'Link Hover Color',
+						'type'	=>	'rgba-color-picker',
+						'value'	=>	'#06743d',
+						'desc'	=>	__('Change Link Hover Color', 'poc'),
+						'help'	=>	__('Change Link Hover Color', 'poc'),
+					),
 					'boxed_bg_color' => array(
 						'label' => __( 'Boxed Background Color', 'poc' ),
 						'type'  => 'rgba-color-picker',

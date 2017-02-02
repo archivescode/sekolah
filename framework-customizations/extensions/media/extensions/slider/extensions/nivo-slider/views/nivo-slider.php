@@ -3,7 +3,10 @@
 <?php if (isset($data['slides'])): ?>
 	<script type="text/javascript">
 		jQuery(document).ready(function($) {
-			$('.nivoSlider').nivoSlider({effect:'fade'});
+			$('.nivoSlider').nivoSlider({
+				effect: 'random',
+				pauseOnHover: true
+			});
 		});
 	</script>
 	<!--Slider-->

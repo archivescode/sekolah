@@ -8,14 +8,14 @@
 
 echo $before_widget
 ?>
-<div class="tabs">
-	<ul>
-		<li><a href="#popular_posts"><?php _e( 'Posts', 'unyson' ); ?></a></li>
-		<span class="separator">/</span>
-		<li><a href="#most_commented"><?php _e( 'Most Commented', 'unyson' ); ?></a></li>
+<div class="tabs-wrapper">
+	<ul class="nav classic-tabs tabs-cyan">
+		<li class="nav-item active"><a href="#popular_posts" class="nav-link waves-light"  data-toggle="tab"><?php _e( 'Posts', 'poc' ); ?></a></li>
+		<li class="nav-item"><a href="#most_commented"  class="nav-link waves-light" data-toggle="tab"><?php _e( 'Most Commented', 'poc' ); ?></a></li>
 	</ul>
 </div>
-<div id="popular_posts" class="widget_popular_posts">
+<div class="tab-content card">
+<div id="popular_posts" class="tab-pane fade in active">
 	<ul>
 		<?php foreach ( $recent_posts as $post ): ?>
 			<li>
@@ -24,7 +24,7 @@ echo $before_widget
 		<?php endforeach; ?>
 	</ul>
 </div>
-<div id="most_commented" class="widget_most_commented">
+<div id="most_commented" class="tab-pane fade">
 	<ul>
 		<?php foreach ( $popular_posts as $post ): ?>
 			<li>
@@ -32,5 +32,6 @@ echo $before_widget
 			</li>
 		<?php endforeach; ?>
 	</ul>
+</div>
 </div>
 <?php echo $after_widget ?>

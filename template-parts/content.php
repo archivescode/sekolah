@@ -18,10 +18,23 @@
 			the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
 		endif;
 		?>
+		<?php
+		if ( 'post' === get_post_type() ) : ?>
+		<div class="entry-meta">
+			<?php poc_posted_on(); ?>
+		</div><!-- .entry-meta -->
+		<?php
+		endif; ?>
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
 		<?php
+
+			if ( has_post_thumbnail() ) {
+				echo '<div class="image-thumbnail">';
+			    the_post_thumbnail('full');
+			    echo '</div>';
+			}
 			the_content( sprintf(
 				/* translators: %s: Name of current post. */
 				wp_kses( __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'poc' ), array( 'span' => array( 'class' => array() ) ) ),

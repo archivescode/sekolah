@@ -16,7 +16,7 @@
 
 .bx-wrapper {
 	position: relative;
-	margin: 0 auto 60px;
+	margin: 0 auto;
 	padding: 0;
 	*zoom: 1;
 }
@@ -73,6 +73,8 @@
 	font-weight: bold;
 	color: #666;
 	padding-top: 20px;
+	position: absolute;
+	bottom: 20px;
 }
 
 .bx-wrapper .bx-pager .bx-pager-item,
@@ -210,4 +212,14 @@
 	margin: 0;
 	padding: 0;
 	float: left;
+}
+.bx-controls-direction a {
+    opacity: 0;
+    transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;
+}
+
+.bx-wrapper:hover .bx-controls-direction a {
+    opacity: 1;
 }

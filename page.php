@@ -16,7 +16,14 @@ if ( function_exists('fw_get_db_settings_option') && !empty(fw_get_db_settings_o
 	$sidebar = fw_get_db_settings_option('sidebar');
 	$column_content = 'col-sm-9';
 	$column_sidebar = 'col-sm-3';
-	if($sidebar == 'left' || $sidebar == 'right'){
+	$style_left = '';
+	$style_right = '';
+	if($sidebar == 'left'){
+		$style_right = 'style="display:none;"';
+		$column_sidebar = 'col-sm-3';
+		$column_content = 'col-sm-9';
+	}elseif ($sidebar == 'right'){
+		$style_left = 'style="display:none;"';
 		$column_sidebar = 'col-sm-3';
 		$column_content = 'col-sm-9';
 	}elseif ($sidebar == 'left_right') {
@@ -28,15 +35,15 @@ get_header(); ?>
 	<div class="container">
 	<div class="row">
 
+	<div class="<?php echo $column_sidebar; ?>" <?php echo $style_left; ?>>
 	<div class="sidebar-left">
-	<div class="<?php echo $column_sidebar; ?>">
 	<?php
 
 		get_sidebar();
 
 	?>
-	</div>
 	</div><!--sidebar-left-->
+	</div>
 
 	<div id="primary" class="content-area">
 
@@ -63,16 +70,16 @@ get_header(); ?>
 
 	</div><!-- #primary -->
 
+	<div class="<?php echo $column_sidebar; ?>" <?php echo $style_right; ?>>
 	<div class="sidebar-right">
-	<div class="<?php echo $column_sidebar; ?>">
-
 		<?php
 
 			get_sidebar('right');
 
 		?>
-	</div>
 	</div><!--.sidebar-right-->
+	</div>
+
 
 
 </div><!--row-->

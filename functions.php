@@ -144,6 +144,7 @@ add_action( 'widgets_init', 'poc_widgets_init' );
  * Enqueue scripts and styles.
  */
 function poc_scripts() {
+
 	wp_enqueue_style( 'poc-bootstrap', get_template_directory_uri() .'/assets/bootstrap/css/bootstrap.min.css',array(),'3.3.7' );
 
 	wp_enqueue_style( 'poc-font-awesome', get_template_directory_uri() .'/assets/font-awesome/css/font-awesome.min.css',array(),'4.1.0' );
@@ -151,6 +152,8 @@ function poc_scripts() {
 	wp_enqueue_style( 'poc-bootstrap-theme', get_template_directory_uri() .'/assets/bootstrap/css/bootstrap-theme.min.css',array(),'3.3.7' );
 
 	wp_enqueue_style( 'poc-style', get_stylesheet_uri() );
+
+	wp_enqueue_script( 'poc-easing-js', get_template_directory_uri() . '/js/jquery.easing.js', array(), '1.3', true );
 
 	wp_enqueue_script( 'poc-bootstrap-js', get_template_directory_uri() . '/assets/bootstrap/js/bootstrap.min.js', array(), '20151215', true );
 
@@ -162,6 +165,13 @@ function poc_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'poc_scripts' );
+
+function _filter_theme_disable_sliders ($sliders){ 
+$key = array_search('owl-carousel', $sliders); 
+unset($sliders[$key]); 
+return $sliders; 
+}
+add_filter( 'fw_ext_slider_activated' , '_filter_theme_disable_sliders');
 
 
 /**

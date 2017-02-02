@@ -18,7 +18,7 @@ if ( function_exists('fw_get_db_settings_option') && !empty(fw_get_db_settings_o
 <div class="container">
 <div class="row">
 
-		<nav class="navbar navbar-default">
+		<nav class="navbar navbar-default <?php echo $nav_position; ?>">
 
 		<div class="container">
 
@@ -61,10 +61,10 @@ if ( function_exists('fw_get_db_settings_option') && !empty(fw_get_db_settings_o
 
 		    <div class="<?php echo $column_nav; ?>">
 
-		    <!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse" id="poc-nav-collapse">
-				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>
-			</div>
+		    	<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="poc-nav-collapse">
+					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>
+				</div>
 
 			</div>
 

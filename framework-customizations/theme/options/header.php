@@ -36,6 +36,13 @@ $options = array(
 							),
 						),
 					),
+					'header_top_border_top_color'	=> array(
+						'label'	=>	'Header Top Border Color',
+						'type'	=>	'rgba-color-picker',
+						'value'	=>	'#0bc165',
+						'desc'	=>	__('Change Header Top Border Color', 'poc'),
+						'help'	=>	__('Change Header Top Border Color', 'poc'),
+					),
 					'header_top_left_content' => array(
 						'type'    => 'select',
 						'label'   => __( 'Left Content', 'poc' ),

@@ -50,6 +50,18 @@
 				echo ".container{max-width:calc(". $site_width .");}";
 			}
 
+			$link_color = fw_get_db_settings_option('link_color');
+			if(!empty($link_color)){
+				echo 'a{color: '.$link_color.';}';
+				echo '.content-area .navigation li a{background: '.$link_color.';}';
+			}
+
+			$link_hover = fw_get_db_settings_option('link_hover');
+			if(!empty($link_hover)){
+				echo 'a:active, a:hover, a:focus{color: '.$link_hover.';}';
+				echo '.content-area .navigation li.active a,.content-area  .navigation li a:active,.content-area  .navigation li a:hover,.content-area  .navigation li a:focus{background: '.$link_hover.';}';
+			}
+
 			/*========================================================================
 				Boxed Background
 			==========================================================================*/
@@ -121,12 +133,6 @@
 				$font = $desc_style .' font-size:  '.$desc_typography['size'] .'px; font-family:  '. $desc_typography['family'];
 				echo '.site-description{'. $font .';color: '.$desc_typography['color'].';}';
 
-			$nav_typography = fw_get_db_settings_option('nav_typography');
-
-			$nav_style = getFontstyle($nav_typography);
-				
-				$font = $nav_style .' font-size:  '.$nav_typography['size'] .'px; font-family:  '. $nav_typography['family'];
-				echo '#poc-nav-collapse .menu > li > a{'. $font .';color: '.$nav_typography['color'].';}';
 			/*=========================================================================
 				Header Top Style
 			==========================================================================*/
@@ -139,6 +145,11 @@
 
 			if(!empty($header_top_background)){
 				echo 'header .header-top-wrap{background: '.$header_top_background.'}';
+			}
+
+			$header_top_border_color = fw_get_db_settings_option('header_top_border_top_color');
+			if(!empty($header_top_border_color)){
+				echo 'header .header-top-wrap{border-top-color: '.$header_top_border_color.'}';
 			}
 			/*========================================================================
 				Header Option
@@ -226,10 +237,20 @@
 				echo '.nav_main{background:  '.$nav_bg_color.';}';
 			}
 
+			$nav_typography = fw_get_db_settings_option('nav_typography');
+
+			$nav_style = getFontstyle($nav_typography);
+				
+				$font = $nav_style .' font-size:  '.$nav_typography['size'] .'px; font-family:  '. $nav_typography['family'];
+				echo '#poc-nav-collapse .menu > li > a{'. $font .';color: '.$nav_typography['color'].';}';
+				echo '.sub-menu li a{color:'.$nav_typography['color'].';}';
+
 			$nav_hover = fw_get_db_settings_option('nav_hover');
 
-			if(!empty($nav_bg_color)){
-				echo '#poc-nav-collapse .menu > li:hover > a, #poc-nav-collapse .menu > li:focus > a, #poc-nav-collapse .menu > li:active > a{color:  '.$nav_hover.';}';
+			if(!empty($nav_hover)){
+				echo '#poc-nav-collapse .menu > li:hover > a, #poc-nav-collapse .menu > li:focus > a, #poc-nav-collapse .menu > li:active > a{color:  '.$nav_hover.';border-top-color:'.$nav_hover.';}';
+				echo '.menu li .sub-menu{border-top-color: '.$nav_hover.';}';
+				echo '.sub-menu li a:hover, .sub-menu li a:focus, .sub-menu li a:active{color:'.$nav_hover.';}';
 			}
 			/*========================================================================
 				Content Option
@@ -290,6 +311,29 @@
 				Sidebar Style
 			==========================================================================*/
 
+			$style_color = fw_get_db_settings_option('style_color');
+			if(!empty($style_color)){
+				echo '.tabs-wrapper ul.nav,.widget h2.widget-title, .tabs-wrapper ul.nav li.nav-item a{background: '.$style_color.';border-color:'.$style_color.';}';
+				echo '.widget ul{border-color: '.$style_color.';}';
+			}
+
+			$header_color = fw_get_db_settings_option('header_color');
+			if(!empty($header_color)){
+				echo '.widget h2.widget-title, .tabs-wrapper ul.nav li.nav-item a{color: '.$header_color.';}';
+			}
+
+			$sidebar_style = fw_get_db_settings_option('sidebar_style');
+
+			if(!empty($sidebar_style)){
+
+				if ($sidebar_style == 'radius_border') {
+					echo '.widget h2.widget-title, .tabs-wrapper ul.nav{border-top-left-radius: 4px;border-top-right-radius: 4px;}';
+				} elseif ($sidebar_style == 'top_border') {
+					echo '.widget h2.widget-title, .tabs-wrapper ul.nav{border-top-left-radius: 4px;border-top-right-radius: 4px;}';
+					echo '.widget h2.widget-title{background: #ffffff;border-top:3px solid '.$style_color.';}';
+				}
+				
+			}
 
 			/*==========================================================================
 				Footer Style
@@ -348,10 +392,5 @@
 			}
 		}
 	?>
-
-/*======================================================================================
-	color scheme include
-======================================================================================*/
-<?php require 'color-scheme.php'; ?>
 
 </style>
